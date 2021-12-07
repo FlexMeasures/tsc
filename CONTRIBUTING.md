@@ -35,7 +35,7 @@ At the moment, we have not established a workflow, other than we require contrib
 ## Coding style
 
 We program in Python and follow the PEP8 style guide.
-You can [read more](https://flexmeasures.readthedocs.io/en/latest/dev/introduction.html), e.g. on how to versioning works or how to apply our automatic code style tooling (Flake8, Black).
+You can [read more](https://flexmeasures.readthedocs.io/en/latest/dev/introduction.html), e.g. on how versioning works or how to apply our automatic code style tooling (Flake8, Black).
 
 
 [governance policies]: GOVERNANCE.md

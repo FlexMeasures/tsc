@@ -11,4 +11,4 @@
 
 Please report any vulnerabilities to nicolas@seita.nl.
 
-We value your expertise. Howver, currently we have no bug bounty program or similar.
+We value your expertise. However, currently we have no bug bounty program or similar.
