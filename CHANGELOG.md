@@ -1,14 +1,8 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+The changelog for the FlexMeasures codebase is located [here](https://github.com/FlexMeasures/flexmeasures/blob/main/documentation/changelog.rst).
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+But you probably want to read [the public version](https://flexmeasures.readthedocs.io/en/latest/changelog.html)
 
-## [Unreleased]
+This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### Added
-
-### Changed
-
-### Removed

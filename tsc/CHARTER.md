@@ -1,10 +1,10 @@
 _Template - update with Adopted Date when TSC approves and send to operations@lfenergy.org to file_
 
-# Technical Charter (the "Charter") for [PROJECT NAME] a Series of LF Projects, LLC
+# Technical Charter (the "Charter") for [FlexMeasures] a Series of LF Projects, LLC
 
 **Adopted [DATE]**
 
-This charter (the "Charter") sets forth the responsibilities and procedures for technical contribution to, and oversight of, the [PROJECT NAME] project, which has been established as [PROJECT NAME] a Series of LF Projects, LLC (the "Project").  LF Projects, LLC ("LF Projects") is a Delaware series limited liability company. All Contributors to the Project must comply with the terms of this Charter.
+This charter (the "Charter") sets forth the responsibilities and procedures for technical contribution to, and oversight of, the [FlexMeasures] project, which has been established as [FlexMeasures] a Series of LF Projects, LLC (the "Project").  LF Projects, LLC ("LF Projects") is a Delaware series limited liability company. All Contributors to the Project must comply with the terms of this Charter.
 
 ## 1. Mission and Scope of the Project
   * **a.** The mission of the Project is [MISSION].

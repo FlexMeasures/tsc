@@ -1,4 +1,4 @@
-# [PROJECT NAME] TSC Meeting - <%= date.toFormat("MMMM d, yyyy") %>
+# FlexMeasures TSC Meeting - <%= date.toFormat("MMMM d, yyyy") %>
 
 ## Date/Time
 
@@ -24,7 +24,7 @@ All meetings are listed on the project calendar at https://lists.lfenergy.org/ca
 
 ### Conference call details
 
-_fill in Zoom details_
+https://cloud.seita.nl/index.php/call/3tktzkbi
 
 ### Meeting recordings
 
@@ -34,7 +34,8 @@ _fill in recording details_
 
 ### Voting member rollcall:
 
-_fill in voting members as a checklist_
+- Felix Claessen
+- Nicolas Höning
 
 ### Other Attendees
 
