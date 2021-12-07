@@ -28,9 +28,6 @@ The target group for FlexMeasures are energy service companies (ESCOs), who can 
 
 Find installation / getting started instructions [here](https://flexmeasures.readthedocs.io/en/latest/getting-started.html).
 
-## Release
-
-TODO: add our release checklist and point to it here.
 
 ## Discussion
 

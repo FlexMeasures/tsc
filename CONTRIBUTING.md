@@ -19,12 +19,23 @@ Each contribution must meet the [coding style] and include..
 
 * Submitted to the project as a pull request.
 * Tests and documentation to explain the functionality.
-* Any new files have [copyright and license headers]
+* Any new files have [copyright and license headers](https://github.com/lf-energy/tac/blob/main/process/contribution_guidelines.md#code-license-identification)
 * A [Developer Certificate of Origin signoff]. This can be done by adding `-s` to your `git commit` command.
 
 FlexMeasures is licensed under the [Apache 2.0](LICENSE) license. Contributions should abide by that standard license.
 
 Project committers will review the contribution in a timely manner, and advise of any changes needed to merge the request.
+
+
+## Development workflow
+
+At the moment, we have not established a workflow, other than we require contributions to be made in pull requests. Bigger topics should be discussed as [projects](https://github.com/FlexMeasures/flexmeasures/projects) first.
+
+
+## Coding style
+
+We program in Python and follow the PEP8 style guide.
+You can [read more](https://flexmeasures.readthedocs.io/en/latest/dev/introduction.html), e.g. on how to versioning works or how to apply our automatic code style tooling (Flake8, Black).
 
 
 [governance policies]: GOVERNANCE.md
