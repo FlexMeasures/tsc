@@ -33,8 +33,8 @@ Find installation / getting started instructions [here](https://flexmeasures.rea
 
 You can connect with the community in a variety of ways...
 
-- TODO: [LINK TO MAILING LIST](https://lists.lfenergy.org/g/xxxx-discussion)
-- [#FlexMeasures channel on LF Energy Slack](https://slack.lfenergy.org)
+- [Post to the mailing list](https://lists.lfenergy.org/g/flexmeasures)
+- [Join the #FlexMeasures channel on LF Energy Slack](https://slack.lfenergy.org)
 
 ## Contributing
 Anyone can contribute to the FlexMeasures project - learn more at [CONTRIBUTING.md](CONTRIBUTING.md)
@@ -43,4 +43,4 @@ Anyone can contribute to the FlexMeasures project - learn more at [CONTRIBUTING.
 FlexMeasures is a project hosted by the [LF Energy Foundation](https://lfenergy.org). This project's techincal charter is located in [CHARTER.md](tsc/CHARTER.md) and has established it's own processes for managing day-to-day processes in the project at [GOVERNANCE.md](GOVERNANCE.md).
 
 ## Reporting Issues
-To report a problem, you can open an [issue](https://github.com/lf-energy/FlexMeasures/issues) in repository against a specific workflow. If the issue is senstive in nature or a security related issue, please do not report in the issue tracker but instead email FlexMeasures-private@lists.lfenergy.org.
+To report a problem, you can open an [issue](https://github.com/lf-energy/FlexMeasures/issues) in repository against a specific workflow. If the issue is senstive in nature or a security related issue, please do not report in the issue tracker but instead email flexmeasures-private@lists.lfenergy.org.
