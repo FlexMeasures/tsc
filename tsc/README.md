@@ -1,4 +1,4 @@
-# TSC Materials for [PROJECT NAME]
+# TSC Materials for FlexMeasures
 
 This directory contains the meeting notes, process documentations, and other materials related to this project.
 
@@ -6,43 +6,43 @@ This directory contains the meeting notes, process documentations, and other mat
 
 This is a checklist for TSC's to review as part of the intake process. The TSC should review this entire list during the kickoff meeting. For anything outstanding, create an [issue](../issues) to track and link to it in the list
 
-- [ ] Copy this checklist to a project specific location for tracking
+- [x] Copy this checklist to a project specific location for tracking
 - Acceptance Criteria
 	- Have an open and documented technical governance, including:
-		- [ ] A [LICENSE](../LICENSE) file in every code repository, with the license chosen an [OSI-approved license](https://opensource.org/licenses).
-		- [ ] A [README](../README.md) file welcoming new community members to the project and explaining why the project is useful and how to get started.
-		- [ ] A [CONTRIBUTING](../CONTRIBUTING.md) file explaining to other developers and your community of users how to contribute to the project. The file should explain what types of contributions are needed and how the process works.
-		- [ ] A CODEOWNERS or [COMMITTERS](../COMMITTERS.csv) file to define individuals or teams that are responsible for code in a repository; document current project owners and current and emeritus committers. 
-		- [ ] A [CODE_OF_CONDUCT](../CODE_OF_CONDUCT.md) file that sets the ground rules for participants’ behavior associated and helps to facilitate a friendly, welcoming environment. By default projects should leverage the Linux Foundation Code of Conduct unless an alternate Code of Conduct is approved prior.
-		- [ ] A [RELEASE](../RELEASE.md) file that provides documentation on the release methodology, cadence, criteria, etc.
-		- [ ] A [GOVERNANCE](../GOVERNANCE.md) file that documents the project’s technical governance.
-		- [ ] A [SUPPORT](../SUPPORT.md) file to let users and developers know about ways to get help with your project.
+		- [x] A [LICENSE](../LICENSE) file in every code repository, with the license chosen an [OSI-approved license](https://opensource.org/licenses).
+		- [x] A [README](../README.md) file welcoming new community members to the project and explaining why the project is useful and how to get started.
+		- [x] A [CONTRIBUTING](../CONTRIBUTING.md) file explaining to other developers and your community of users how to contribute to the project. The file should explain what types of contributions are needed and how the process works.
+		- [x] A CODEOWNERS or [COMMITTERS](../COMMITTERS.csv) file to define individuals or teams that are responsible for code in a repository; document current project owners and current and emeritus committers. 
+		- [x] A [CODE_OF_CONDUCT](../CODE_OF_CONDUCT.md) file that sets the ground rules for participants’ behavior associated and helps to facilitate a friendly, welcoming environment. By default projects should leverage the Linux Foundation Code of Conduct unless an alternate Code of Conduct is approved prior.
+		- [x] A [RELEASE](../RELEASE.md) file that provides documentation on the release methodology, cadence, criteria, etc.
+		- [x] A [GOVERNANCE](../GOVERNANCE.md) file that documents the project’s technical governance.
+		- [x] A [SUPPORT](../SUPPORT.md) file to let users and developers know about ways to get help with your project.
 	- [ ] Complete and approve the [Technical Charter](CHARTER.md) and agree to transfer any relevant trademarks to The Linux Foundation or its affiliate, LF Projects, LLC, and to assist in filing for any relevant unregistered ones.
-	- [ ] Submit a completed [Project Contribution Proposal](https://wiki.lfenergy.org/display/HOME/New+Project+Proposals+Process) to the TAC for consideration
-	- [ ] Schedule to present at an upcoming TAC meeting ( provide date ).
-	- [ ] Submit presentation to the TAC ( provide link to presentation ).
-	- [ ] Receive the affirmative majority vote of the TAC ( provide date ).
+	- [x] Submit a completed [Project Contribution Proposal](https://wiki.lfenergy.org/display/HOME/New+Project+Proposals+Process) to the TAC for consideration
+	- [x] Schedule to present at an upcoming TAC meeting ( provide date ).
+	- [x] Submit presentation to the TAC ( provide link to presentation ).
+	- [x] Receive the affirmative majority vote of the TAC ( provide date ).
 	- [ ] Receive the affirmative majority vote of the Governing Board ( provide date ).
 - New Project Intake
 	- Establish TSC
-		- [ ] Location for TSC documents and meeting notes ( recommendation is ```tsc``` directory in main repo, and then ```meetings``` under the ```tsc``` directory )
-		- [ ] TSC members identified, added to [GOVERNANCE.md](../GOVERNANCE.md).
-		- [ ] First TSC meeting held ( [agenda](meetings/initial-meeting-agenda.md) )
-		- [ ] Elect TSC Chairperson
-		- [ ] TSC meeting cadence set and added to project calendar (https://lists.lfenergy.org/calendar)
+		- [x] Location for TSC documents and meeting notes ( recommendation is ```tsc``` directory in main repo, and then ```meetings``` under the ```tsc``` directory )
+		- [x] TSC members identified, added to [GOVERNANCE.md](../GOVERNANCE.md).
+		- [x] First TSC meeting held ( [agenda](meetings/initial-meeting-agenda.md) )
+		- [x] Elect TSC Chairperson (-> Nicolas Höning)
+		- [] TSC meeting cadence set and added to project calendar (https://lists.lfenergy.org/calendar)
 	- [ ] Code scan completed and any recommendations remedyed ( details at https://wiki.lfenergy.org/display/HOME/The+Linux+Foundation+License+Scanning+and+Analysis+Support+Program+for+LF+projects ).
 	- Infrastructure
-		- [ ] Source Control (Github, GitLab, something else ) and LFE Staff is an administrator.	
-			- [ ] Developer Certificate of Origin past commit signoff done and DCO Probot enabled.
-		- [ ] Issue/feature tracker (JIRA, GitHub issues) and LFE Staff is an administrator.
+		- [x] Source Control (Github, GitLab, something else ) and LFE Staff is an administrator.	
+			- [x] Developer Certificate of Origin past commit signoff done and DCO Probot enabled.
+		- [x] Issue/feature tracker (JIRA, GitHub issues) and LFE Staff is an administrator.
 		- Collaboration tools 
 			- Mailing lists - one of ( refer to [guidelines](https://wiki.lfenergy.org/display/HOME/Project+Collaboration+Tools#ProjectCollaborationTools-Mailinglists): 
-				- [ ] Create new list(s) ( default is -discussion@ and -private@ - create [service desk request] to provision ) 
-				- [ ] Move to https://lists.lfenergy.org ( create [service desk request] to setup/transfer )
+				- [x] Create new list(s) ( default is -discussion@ and -private@ - create [service desk request] to provision ) 
+				- [x] Move to https://lists.lfenergy.org ( create [service desk request] to setup/transfer )
 			- [ ] Establish project calendar on https://lists.lfenergy.org ( refer to [guidelines] (https://wiki.lfenergy.org/display/HOME/Project+Collaboration+Tools#ProjectCollaborationTools-Calendars) )
-			- [ ] Slack or IRC ( create [service desk request] to setup Slack project channel - refer to [guidelines]( https://wiki.lfenergy.org/display/HOME/Project+Collaboration+Tools#ProjectCollaborationTools-Slack) )
-		- [ ] Website ( if needed )
-		- [ ] CI/build environment ( if needed )
+			- [x] Slack or IRC ( create [service desk request] to setup Slack project channel - refer to [guidelines]( https://wiki.lfenergy.org/display/HOME/Project+Collaboration+Tools#ProjectCollaborationTools-Slack) )
+		- [x] Website ( if needed )
+		- [x] CI/build environment ( if needed )
 		- [ ] Add project to [LFX Insights](https://insights.lfx.linuxfoundation.org/) ( create [service desk request] to trigger )
 		- [ ] Add project to [LFX Security](https://security.lfx.linuxfoundation.org/) ( create [service desk request] to trigger )
 	- Project assets
