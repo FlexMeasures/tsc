@@ -17,7 +17,7 @@ This is a checklist for TSC's to review as part of the intake process. The TSC s
 		- [x] A [RELEASE](../RELEASE.md) file that provides documentation on the release methodology, cadence, criteria, etc.
 		- [x] A [GOVERNANCE](../GOVERNANCE.md) file that documents the project’s technical governance.
 		- [x] A [SUPPORT](../SUPPORT.md) file to let users and developers know about ways to get help with your project.
-	- [ ] Complete and approve the [Technical Charter](CHARTER.md) and agree to transfer any relevant trademarks to The Linux Foundation or its affiliate, LF Projects, LLC, and to assist in filing for any relevant unregistered ones.
+	- [x] Complete and approve the [Technical Charter](CHARTER.md) and agree to transfer any relevant trademarks to The Linux Foundation or its affiliate, LF Projects, LLC, and to assist in filing for any relevant unregistered ones.
 	- [x] Submit a completed [Project Contribution Proposal](https://wiki.lfenergy.org/display/HOME/New+Project+Proposals+Process) to the TAC for consideration
 	- [x] Schedule to present at an upcoming TAC meeting ( provide date ).
 	- [x] Submit presentation to the TAC ( provide link to presentation ).
@@ -29,8 +29,8 @@ This is a checklist for TSC's to review as part of the intake process. The TSC s
 		- [x] TSC members identified, added to [GOVERNANCE.md](../GOVERNANCE.md).
 		- [x] First TSC meeting held ( [agenda](meetings/initial-meeting-agenda.md) )
 		- [x] Elect TSC Chairperson (-> Nicolas Höning)
-		- [] TSC meeting cadence set and added to project calendar (https://lists.lfenergy.org/calendar)
-	- [ ] Code scan completed and any recommendations remedyed ( details at https://wiki.lfenergy.org/display/HOME/The+Linux+Foundation+License+Scanning+and+Analysis+Support+Program+for+LF+projects ).
+		- [ ] TSC meeting cadence set and added to project calendar (https://lists.lfenergy.org/calendar)
+	- [x] Code scan completed and any recommendations remedyed ( details at https://wiki.lfenergy.org/display/HOME/The+Linux+Foundation+License+Scanning+and+Analysis+Support+Program+for+LF+projects ).
 	- Infrastructure
 		- [x] Source Control (Github, GitLab, something else ) and LFE Staff is an administrator.	
 			- [x] Developer Certificate of Origin past commit signoff done and DCO Probot enabled.
@@ -47,7 +47,7 @@ This is a checklist for TSC's to review as part of the intake process. The TSC s
 		- [ ] Add project to [LFX Security](https://security.lfx.linuxfoundation.org/) ( create [service desk request] to trigger )
 	- Project assets
 		- [ ] Domain name ( create [service desk request] to create/transfer )
-		- [ ] Social media accounts ( create [service desk request] to setup/transfer - if needed )
+		- [x] Social media accounts ( create [service desk request] to setup/transfer - if needed )
 		- [ ] Logo(s) ( create [service desk request] to create ); will be added to [artwork repo](https://artwork.lfenergy.org) in SVG and PNG format and color/black/white )
 	- Outreach
 		- [ ] New project annoucement done ( create [service desk request] to trigger )
