@@ -1,13 +1,11 @@
-_Template - update with Adopted Date when TSC approves and send to operations@lfenergy.org to file_
-
 # Technical Charter (the "Charter") for FlexMeasures a Series of LF Projects, LLC
 
-**Adopted [DATE]**
+**Adopted Dec 17, 2021**
 
 This charter (the "Charter") sets forth the responsibilities and procedures for technical contribution to, and oversight of, the FlexMeasures project, which has been established as FlexMeasures a Series of LF Projects, LLC (the "Project").  LF Projects, LLC ("LF Projects") is a Delaware series limited liability company. All Contributors to the Project must comply with the terms of this Charter.
 
 ## 1. Mission and Scope of the Project
-  * **a.** The mission of the Project is [MISSION].
+  * **a.** The mission of the Project is to empower energy service companies to build real-time energy flexibility services, rapidly and scalable.
   * **b.** The scope of the Project includes software development under an OSI-approved open source license supporting the mission, including documentation, testing, integration and the creation of other artifacts that aid the development, deployment, operation or adoption of the open source software project.
 
 ## 2. Technical Steering Committee
