@@ -22,7 +22,6 @@ This is a checklist for TSC's to review as part of the intake process. The TSC s
 	- [x] Schedule to present at an upcoming TAC meeting ( Nov 2, 2021 ).
 	- [x] Submit [presentation to the TAC](https://flexmeasures.io/media/files/LFE-TAC-Intro-FlexMeasures.pdf).
 	- [x] Receive the affirmative majority vote of the TAC ( Nov 2, 2021 ).
-	- [ ] Receive the affirmative majority vote of the Governing Board ( provide date ).
 - New Project Intake
 	- Establish TSC
 		- [x] Location for TSC documents and meeting notes ( recommendation is ```tsc``` directory in main repo, and then ```meetings``` under the ```tsc``` directory )
