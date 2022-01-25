@@ -79,6 +79,6 @@ This checklict guides you through preparing, testing and documenting a release.
 - [ ] Update `documentation/changelog.rst` to avoid wasting time on change log merge conflicts later
   - Add a placeholder for the next patch release
   - In case of a minor release, add a placeholder for the next minor release
-- [ ] Upgrade dependencies now, so they are well-tested when the next version is released: `make upgrade-dep` Probably good to release this change in a PR to discuss, of course especially if ``make test` is not successful.
+- [ ] Upgrade dependencies now, so they are well-tested when the next version is released: `make upgrade-dep` Probably good to release this change in a PR to discuss, of course especially if `make test` is not successful. Also, this is a good moment to try removing conflict-related version limits (app.in protects test.in, which protects dev.in) 
   
 
