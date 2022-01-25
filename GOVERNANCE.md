@@ -1,5 +1,3 @@
-*NOTE: This document is intended to provide an example governance structure for any LF Energy Foundation project to consider as a starting point. All projects hosted by LF Energy Foundation are not bound by these governance polices, but in absence of any prior governance structure should consider this as a recommended structure*
-
 # Overview
 
 This project aims to be governed in a transparent, accessible way for the benefit of the community. All participation in this project is open and not bound to corporate affilation. Participants are bound to the project's [Code of Conduct].
