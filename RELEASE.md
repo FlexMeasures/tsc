@@ -34,25 +34,25 @@ This checklict guides you through preparing, testing and documenting a release.
 - [ ] Run some tests:
   - [ ] `make test`
   - [ ] a quick UI test
-  
   - [ ] Run a quick API test (TODO)
-  
-  - [ ] Run a fresh pip-install test: follow getting-started guide in fresh venv, config file and database. (this could be an opportunity to Dockerize):
-  
+  - [ ] Run a fresh pip-install test: follow getting-started guide in fresh venv, config file and database. (Notes ― A: aside from the test db, this uses your personal flexmeasures.cfg; B: this could be an opportunity to Dockerize):
     - `mkvirtualenv test-fm-install`
     - `python setup.py install`
     - `export SECRET_KEY=something-secret`
     - `export FLASK_ENV=development`
     - `sudo -i -u postgres`
     - `createdb -U postgres fm_install_test`
-    - `createuser --pwprompt -U postgres fm_install_test`
+    - `createuser --pwprompt -U postgres fm_install_test`  (use "fm_install_test" as password)
     - `exit`
     - `export SQLALCHEMY_DATABASE_URI="postgresql://fm_install_test:fm_install_test@127.0.0.1/fm_install_test"`
     - `flexmeasures --help`  # test startup & CLI commands
     - `flexmeasures db upgrade`
     - `flexmeasures add account --name "Acme Corp."`
     - `flexmeasures add user --username bla --email bla@blupp.com  --account-id 1`
-    - `flexmeasures run`  # test that UI starts and bla user can log in
+    - `flexmeasures dev-add generic-asset-type --name power-generator`
+    - `flexmeasures dev-add generic-asset --name turbine --generic-asset-type-id 1 --latitude 50.8 --longitude 3.3 --account-id 1`
+    - `flexmeasures dev-add sensor --name power --unit MW --event-resolution 5 --timezone Europe/Amsterdam --generic-asset-id 1 --attributes '{"capacity_in_mw": 7}'`
+    - `flexmeasures run`  # test that UI starts, bla user can log in and sees his asset and sensor
     - `deactivate && rmvirtualenv test-fm-install`
     - `sudo -i -u postgres`
     - `dropdb fm_install_test && dropuser fm_install_test && exit`
@@ -63,7 +63,7 @@ This checklict guides you through preparing, testing and documenting a release.
   - (PATCH) `git checkout` the patch release branch, backport the change log updates, and `git push` again
   - Add the version tag: `git tag -a vX.Y.Z`
   - `git push --tags` 
-- [ ] Create a release on Github based on the new tag  (you can copy the title from your blog post and also paste the change log notes in there)
+- [ ] Create a release on Github based on the new tag  (you can copy the title from your blog post and also paste the change log notes in there; code assets are added automatically)
 - [ ] Publish the blog post in Publii ("Sync your website")
 - [ ] Check if the documentation builds on [readthedocs.org](https://readthedocs.org/projects/flexmeasures/builds/) (login via Github)
 - [ ] Release to Pypi
