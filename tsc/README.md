@@ -38,8 +38,8 @@ This is a checklist for TSC's to review as part of the intake process. The TSC s
 			- Mailing lists - one of ( refer to [guidelines](https://wiki.lfenergy.org/display/HOME/Project+Collaboration+Tools#ProjectCollaborationTools-Mailinglists): 
 				- [x] Create new list(s) ( default is -discussion@ and -private@ - create [service desk request] to provision ) 
 				- [x] Move to https://lists.lfenergy.org ( create [service desk request] to setup/transfer )
-			- [ ] Establish project calendar on https://lists.lfenergy.org ( refer to [guidelines] (https://wiki.lfenergy.org/display/HOME/Project+Collaboration+Tools#ProjectCollaborationTools-Calendars) )
-			- [x] Slack or IRC ( create [service desk request] to setup Slack project channel - refer to [guidelines]( https://wiki.lfenergy.org/display/HOME/Project+Collaboration+Tools#ProjectCollaborationTools-Slack) )
+			- [ ] Establish project calendar on https://lists.lfenergy.org ( refer to [guidelines](https://wiki.lfenergy.org/display/HOME/Project+Collaboration+Tools#ProjectCollaborationTools-Calendars) )
+			- [x] Slack or IRC ( create [service desk request] to setup Slack project channel - refer to [guidelines](https://wiki.lfenergy.org/display/HOME/Project+Collaboration+Tools#ProjectCollaborationTools-Slack) )
 		- [x] Website ( if needed )
 		- [x] CI/build environment ( if needed )
 		- [ ] Add project to [LFX Insights](https://insights.lfx.linuxfoundation.org/) ( create [service desk request] to trigger )
@@ -47,7 +47,7 @@ This is a checklist for TSC's to review as part of the intake process. The TSC s
 	- Project assets
 		- [x] Domain name ( create [service desk request] to create/transfer )
 		- [x] Social media accounts ( create [service desk request] to setup/transfer - if needed )
-		- [ ] Logo(s) ( create [service desk request] to create ); will be added to [artwork repo](https://artwork.lfenergy.org) in SVG and PNG format and color/black/white )
+		- [x] Logo(s) ( create [service desk request] to create ); will be added to [artwork repo](https://artwork.lfenergy.org) in SVG and PNG format and color/black/white )
 	- Outreach
 		- [ ] New project annoucement done ( create [service desk request] to trigger )
 		- [ ] Project added to LF Energy properties
