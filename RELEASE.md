@@ -33,24 +33,14 @@ This checklict guides you through preparing, testing and documenting a release.
   - [ ] `make freeze-deps`
 - [ ] Run some tests:
   - [ ] `make test`
-  - [ ] a quick UI test
-  - [ ] Run a quick API test (TODO)
-  - [ ] Run a fresh pip-install test: follow getting-started guide in fresh venv, config file and database. (Notes ― A: aside from the test db, this uses your personal flexmeasures.cfg; B: this could be an opportunity to Dockerize):
-    - `mkvirtualenv test-fm-install`
-    - `python setup.py install`
-    - `docker pull postgres; docker run --name pg-docker -e POSTGRES_PASSWORD=docker -e POSTGRES_DB=flexmeasures-db -d -p 5433:5432 postgres:latest`
-    - `export SQLALCHEMY_DATABASE_URI="postgresql://postgres:docker@127.0.0.1:5433/flexmeasures-db" SECRET_KEY=notsecret FLASK_ENV=development`
-    - `flexmeasures --help`  # test startup & CLI commands
-    - `flexmeasures db upgrade`
-    - `flexmeasures add account --name "Acme Corp."`
-    - `flexmeasures add user --username bla --email bla@blupp.com  --account-id 1`
-    - `flexmeasures add asset-type --name power-generator`
-    - `flexmeasures add asset --name turbine --asset-type-id 1 --latitude 50.8 --longitude 3.3 --account-id 1`
-    - `flexmeasures add sensor --name power --unit MW --event-resolution 5 --timezone Europe/Amsterdam --asset-id 1 --attributes '{"capacity_in_mw": 7}'`
-    - `flexmeasures run`  # test that UI starts, bla user can log in and sees his asset and sensor
-    - `deactivate && rmvirtualenv test-fm-install`
-    - `docker stop pg-docker; docker rm pg-docker`
-    - `workon <your usual dev virtualenv> ` # make sure you re-activate your original venv - or just close the terminal
+  - [ ] Run a fresh functionality test, using [our docker compose stack](https://flexmeasures.readthedocs.io/en/latest/dev/docker-compose.html#seeing-it-work-running-the-toy-tutorial):
+    - docker rmi flexmeasures_server flexmeasures_worker
+    - docker compose build
+    - docker compose up  # already makes a toy account
+    - Run the last steps of the tutorial (see link above, adding prices and schedule)
+    - Test if a schedule was made, also check in UI
+    - Do a quick UI test if possible
+    - Run a API test (TODO, maybe script a call to get the tutorial data or add something as well)
 - [ ] Commit & push
   - local changes (e.g. from the change log updates): `git commit -am "..."`
   - `git push`
@@ -70,6 +60,9 @@ This checklict guides you through preparing, testing and documenting a release.
   - [ ] `git push`
   - [ ] Tag the new commit with v<major>.<minor+1>.0.dev0
   - [ ] `git push --tags`
+- [ ] Create a new version of our Docker image:
+  - docker tag flexmeasures_server lfenergy/flexmeasures:v<major>.<minor+1>  # TODO: test
+  - docker push
 - [ ] Close the current milestone and make a new milestone on https://github.com/FlexMeasures/flexmeasures/milestones
 - [ ] Update `documentation/changelog.rst` to avoid wasting time on change log merge conflicts later
   - Add a placeholder for the next patch release
