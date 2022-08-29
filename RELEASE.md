@@ -61,8 +61,12 @@ This checklict guides you through preparing, testing and documenting a release.
   - [ ] Tag the new commit with v<major>.<minor+1>.0.dev0
   - [ ] `git push --tags`
 - [ ] Create a new version of our Docker image:
-  - docker tag flexmeasures_server lfenergy/flexmeasures:v<major>.<minor+1>  # TODO: test
-  - docker push
+  - docker tag flexmeasures_server lfenergy/flexmeasures:v<major>.<minor>
+  - docker tag lfenergy/flexmeasures:v<major>.<minor> lfenergy/flexmeasures:latest
+  - docker login -u flexmeasures  # Credentials in Seita's credentials store. If using Docker Desktop, you might need to edit ~/.docker/config.json
+  - docker push lfenergy/flexmeasures:v<major>.<minor>
+  - docker push lfenergy/flexmeasures:latest
+  - Check on https://hub.docker.com/r/lfenergy/flexmeasures/tags
 - [ ] Close the current milestone and make a new milestone on https://github.com/FlexMeasures/flexmeasures/milestones
 - [ ] Update `documentation/changelog.rst` to avoid wasting time on change log merge conflicts later
   - Add a placeholder for the next patch release
