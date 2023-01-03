@@ -9,7 +9,7 @@ We strive for roughly a release per month.
 
 ## Checklist
 
-This checklict guides you through preparing, testing and documenting a release.
+This checklist guides you through preparing, testing and documenting a release.
 
 
 - [ ] Decide which commits to main you want to include in the release, and make sure the [corresponding milestone](https://github.com/FlexMeasures/flexmeasures/milestones) is up to date and 100% closed (move open issues to the next milestone, if needed)
@@ -24,16 +24,9 @@ This checklict guides you through preparing, testing and documenting a release.
 - [ ] (MINOR or MAJOR) Write a blog post about the added features in Publii.
 - [ ] Be sure to work on main: `git checkout main` and `git pull`
 - [ ] Test documentation creation: `make update-docs`
-- [ ] Update change logs with a commit described with "Prepare changelogs for v<major>.<minor>.<patch> release"
-  - [ ] Insert today's date into `documentation/changelog.rst`
-  - [ ] (MINOR or MAJOR) Get the blog post's slug (by copying from the localhost preview URL) and link to the post from the changelog.	
-  - [ ] Look at `documentation/cli/change_log.rst` to see if we made changes there.
-  - [ ] Likewise, look at `documentation/api/change_log.rst`
-- [ ] Update dependencies: 
-  - [ ] `make freeze-deps`
-- [ ] Run some tests:
-  - [ ] `make test`
-  - [ ] Run a fresh functionality test, using [our docker compose stack](https://flexmeasures.readthedocs.io/en/latest/dev/docker-compose.html#seeing-it-work-running-the-toy-tutorial):
+- [ ] Run some functionality tests:
+  - [ ] Run automated tests via `make test`
+  - [ ] Run a fresh interactive test, using [our docker compose stack](https://flexmeasures.readthedocs.io/en/latest/dev/docker-compose.html#seeing-it-work-running-the-toy-tutorial):
     - docker rmi flexmeasures_server flexmeasures_worker
     - docker compose build
     - docker compose up  # already makes a toy account
@@ -41,6 +34,13 @@ This checklict guides you through preparing, testing and documenting a release.
     - Test if a schedule was made, also check in UI
     - Do a quick UI test if possible
     - Run a API test (TODO, maybe script a call to get the tutorial data or add something as well)
+- [ ] Update change logs with a commit described with "Prepare changelogs for v<major>.<minor>.<patch> release"
+  - [ ] Insert today's date into `documentation/changelog.rst`
+  - [ ] (MINOR or MAJOR) Get the blog post's slug (by copying from the localhost preview URL) and link to the post from the changelog.	
+  - [ ] Look at `documentation/cli/change_log.rst` to see if we made changes there.
+  - [ ] Likewise, look at `documentation/api/change_log.rst`
+- [ ] Update dependencies: 
+  - [ ] `make freeze-deps`
 - [ ] Commit & push
   - local changes (e.g. from the change log updates): `git commit -am "..."`
   - `git push`
