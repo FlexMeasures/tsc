@@ -33,6 +33,7 @@ This checklist guides you through preparing, testing and documenting a release.
     - `docker compose up`  # already makes a toy account in container
     - Run the last steps of the tutorial (see link above, adding prices and schedule)
     - Test if a schedule was made, also check in UI
+    - Also check without `--as-job`, as that touches different code.
     - Do a quick UI test if possible
     - Run a API test (TODO, maybe script a call to get the tutorial data or add something as well)
 - [ ] Update change logs with a commit described with "Prepare changelogs for v<major>.<minor>.<patch> release"
@@ -64,7 +65,7 @@ This checklist guides you through preparing, testing and documenting a release.
 - [ ] Create a new version of our Docker image:
   - docker tag flexmeasures-server lfenergy/flexmeasures:v<major>.<minor>
   - docker tag lfenergy/flexmeasures:v<major>.<minor> lfenergy/flexmeasures:latest
-  - docker login -u flexmeasures  # [Setup a GPG key](https://docs.docker.com/desktop/get-started/#credentials-management-for-linux-users) locally, then log in (maybe in Docker Desktop), credentials in Seita's keepass store. Another way is to edit ~/.docker/config.json
+  - docker login -u flexmeasures  # Credentials in Seita's keepass store. See also below.
   - docker push lfenergy/flexmeasures:v<major>.<minor>
   - docker push lfenergy/flexmeasures:latest
   - Check on https://hub.docker.com/r/lfenergy/flexmeasures/tags
@@ -75,3 +76,9 @@ This checklist guides you through preparing, testing and documenting a release.
 - [ ] Upgrade dependencies now, so they are well-tested when the next version is released: `make upgrade-deps`. Probably good to release this change in a PR to discuss, of course especially if `make test` is not successful. Also, this is a good moment to try removing conflict-related version limits (app.in protects test.in, which protects dev.in) 
   
 
+## Logging into Docker
+
+I had to try different means to actually log in to Docker. It seems that using `docker login -u flexmeasures` (see above) is working, but maybe under different circumstances these other ways are better, which I remembered as having helped me earlier:
+
+- [Setup a GPG key](https://docs.docker.com/desktop/get-started/#credentials-management-for-linux-users) locally, then log in (maybe in Docker Desktop)
+- Another way is to edit ~/.docker/config.json (Google may have help on this)
