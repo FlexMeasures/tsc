@@ -26,16 +26,16 @@ This checklist guides you through preparing, testing and documenting a release.
 - [ ] Test documentation creation: `make update-docs`
 - [ ] Update dependencies: `make install-for-dev`
 - [ ] Run some functionality tests:
-  - [ ] Run automated tests via `make test`
-  - [ ] Run a fresh interactive test, using [our docker compose stack](https://flexmeasures.readthedocs.io/en/latest/dev/docker-compose.html#seeing-it-work-running-the-toy-tutorial):
+  - [ ] Run automated tests via `make test`.
+  - [ ] Run a quick QA to see problems not covered by tests: We'll bring up  [our docker compose stack](https://flexmeasures.readthedocs.io/en/latest/dev/docker-compose.html#seeing-it-work-running-the-toy-tutorial) for this:
     - `docker rmi flexmeasures_server flexmeasures_worker`
     - `docker compose build`
     - `docker compose up`  # already makes a toy account in container
-    - Run the last steps of the tutorial (see link above, adding prices and schedule)
-    - Test if a schedule was made, also check in UI
-    - Also check without `--as-job`, as that touches different code.
-    - Do a quick UI test if possible
-    - Run a API test (TODO, maybe script a call to get the tutorial data or add something as well)
+    - Run the last steps of the tutorial (see link above, we still need to add prices and schedule). You can run `scripts/run-tutorial-in-docker.sh` (in this repo).
+    - Test if a schedule was made (bonus: also check in FlexMeasures UI)
+    - Bonus (MAJOR release): Also check with `--as-job`, as that touches different code. Use `docker exec -it flexmeasures-worker-1 bash` here, then create schedule like in the tutorial.
+    - Do a quick UI test: log in toy-user, select battery asset, view schedule
+    - Run an API test (TODO, maybe use a script to get the tutorial data or add something as well)
 - [ ] Update change logs with a commit described with "Prepare changelogs for v<major>.<minor>.<patch> release"
   - [ ] Insert today's date into `documentation/changelog.rst`
   - [ ] (MINOR or MAJOR) Get the blog post's slug (by copying in Publii, see right side under "SEO") and link to the post from the changelog (copy note from earlier versions).	
