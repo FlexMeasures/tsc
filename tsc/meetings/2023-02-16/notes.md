@@ -36,6 +36,7 @@ This way, we can make the extensions we'll need later, e.g.:
 
 
 ## Roadmap re-priorization
+
 Note: On https://flexmeasures.io/roadmap, when we refer to a quarter (e.g. Q1), we mean that we start work in that quarter.
 
 We agreed to:
