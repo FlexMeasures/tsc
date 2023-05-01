@@ -21,10 +21,9 @@ This checklist guides you through preparing, testing and documenting a release.
   1. MAJOR version when you make incompatible API changes,
   2. MINOR version when you add functionality in a backwards compatible manner, and
   3. PATCH version when you make backwards compatible bug fixes.
-- [ ] (MINOR or MAJOR) Write a blog post about the added features in Publii. You can copy an earlier post, but pay< attention to meta data on the right (Featured image, Tags, SEO).
+- [ ] (MINOR or MAJOR) Write a blog post about the added features in Publii. You can copy an earlier post, but pay attention to meta data on the right (Featured image, Tags, SEO).
 - [ ] Be sure to work on main: `git checkout main` and `git pull`
 - [ ] Test documentation creation: `make update-docs`
-- [ ] Update dependencies: `make install-for-dev`
 - [ ] Run some functionality tests:
   - [ ] Run automated tests via `make test`.
   - [ ] Run a quick QA to see problems not covered by tests: We'll bring up  [our docker compose stack](https://flexmeasures.readthedocs.io/en/latest/dev/docker-compose.html#seeing-it-work-running-the-toy-tutorial) for this:
@@ -39,12 +38,12 @@ This checklist guides you through preparing, testing and documenting a release.
 - [ ] Update change logs with a commit described with "Prepare changelogs for v<major>.<minor>.<patch> release"
   - [ ] Insert today's date into `documentation/changelog.rst`
   - [ ] (MINOR or MAJOR) Get the blog post's slug (by copying in Publii, see right side under "SEO") and link to the post from the changelog (copy note from earlier versions).	
-  - [ ] Look at `documentation/cli/change_log.rst` to see if we made changes there.
+  - [ ] Look at `documentation/cli/change_log.rst` to see if we made changes there. Update the date.
   - [ ] Likewise, look at `documentation/api/change_log.rst`
 - [ ] Update dependencies: 
   - [ ] `make freeze-deps`
 - [ ] Commit & push
-  - local changes (e.g. from the change log updates): `git commit -am "..."`
+  - local changes (e.g. from the change log updates), e.g.: `git commit -sam "changelog & deps updates for vX.Y"`
   - `git push`
   - (PATCH) `git checkout` the patch release branch, backport the change log updates, and `git push` again
   - Add the version tag: `git tag -a vX.Y.Z`
@@ -54,31 +53,29 @@ This checklist guides you through preparing, testing and documenting a release.
 - [ ] Check if the documentation builds on [readthedocs.org](https://readthedocs.org/projects/flexmeasures/builds/) (login via Github)
 - [ ] Release to Pypi
   - Run `./to_pypi.sh`  # Credentials in Seita's keepass store
-  - Test (in some fresh context) if `pip install --upgrade flexmeasures` installs the fresh version
+  - Test (in some fresh context) if installs the fresh version:
+    - `python3 -m venv testing-fm-vX.Y`
+    - `source testing-fm-vX.Y/bin/activate`
+    - `pip install --upgrade flexmeasures`  # should download & install new version
+    - `deactivate && rm -rf testing-fm-vX.Y`
 - [ ] Mention the release (with link to the blog post) on the @flexmeasures Twitter account, and other suitable social media accounts
 - [ ] In case of a minor release, prepare structure for next minor release cycle
-  - [ ] Make a new branch for backporting commits with `git branch <major>.<minor>.x`
-  - [ ] Make an empty commit on main (not on the newly created release branch) with `git commit --allow-empty -m "Start <major>.<minor+1>.0"`
+  - [ ] Make a new branch for backporting commits with `git branch [major].[minor].x`
+  - [ ] Make an empty commit on main (not on the newly created release branch) with `git commit --allow-empty -m "Start [major].[minor+1].0"`
   - [ ] `git push`
-  - [ ] Tag the new commit with v<major>.<minor+1>.0.dev0
+  - [ ] Tag the new commit with v[major].[minor+1].0.dev0
   - [ ] `git push --tags`
 - [ ] Create a new version of our Docker image:
-  - docker tag flexmeasures-server lfenergy/flexmeasures:v<major>.<minor>
-  - docker tag lfenergy/flexmeasures:v<major>.<minor> lfenergy/flexmeasures:latest
-  - docker login -u flexmeasures  # Credentials in Seita's keepass store. See also below.
-  - docker push lfenergy/flexmeasures:v<major>.<minor>
-  - docker push lfenergy/flexmeasures:latest
+  - `docker tag flexmeasures_server lfenergy/flexmeasures:v<major>.<minor>`
+  - `docker tag lfenergy/flexmeasures:v[major].[minor] lfenergy/flexmeasures:latest`
+  - `docker login -u flexmeasures`  # Credentials for the Docker account are in Seita's keepass store. When using Docker Desktop (maybe for all Docker demons), you need a Gpg key to use the Linux pass-store (https://docs.docker.com/desktop/get-started/#sign-in-to-docker-desktop)
+  - `docker push lfenergy/flexmeasures:v[major].[minor]`
+  - `docker push lfenergy/flexmeasures:latest`
   - Check on https://hub.docker.com/r/lfenergy/flexmeasures/tags
 - [ ] Close the current milestone and make a new milestone on https://github.com/FlexMeasures/flexmeasures/milestones
 - [ ] Update `documentation/changelog.rst` to avoid wasting time on change log merge conflicts later
   - Add a placeholder for the next patch release
   - In case of a minor release, add a placeholder for the next minor release
+  - Commit the placeholder(s)
 - [ ] Upgrade dependencies now, so they are well-tested when the next version is released: `make upgrade-deps`. Probably good to release this change in a PR to discuss, of course especially if `make test` is not successful. Also, this is a good moment to try removing conflict-related version limits (app.in protects test.in, which protects dev.in) 
   
-
-## Logging into Docker
-
-I had to try different means to actually log in to Docker. It seems that using `docker login -u flexmeasures` (see above) is working, but maybe under different circumstances these other ways are better, which I remembered as having helped me earlier:
-
-- [Setup a GPG key](https://docs.docker.com/desktop/get-started/#credentials-management-for-linux-users) locally, then log in (maybe in Docker Desktop)
-- Another way is to edit ~/.docker/config.json (Google may have help on this)
