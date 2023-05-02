@@ -58,7 +58,11 @@ This checklist guides you through preparing, testing and documenting a release.
     - `source testing-fm-vX.Y/bin/activate`
     - `pip install --upgrade flexmeasures`  # should download & install new version
     - `deactivate && rm -rf testing-fm-vX.Y`
-- [ ] Mention the release (with link to the blog post) on the @flexmeasures Twitter account, and other suitable social media accounts
+- [ ] Mention the release (with link to the blog post) on:
+  - [ ] the @flexmeasures Twitter account
+  - [ ] the FlexMeasures mailing list
+  - [ ] the #flexmeasures channel on LF Energy Slack
+  - [ ] other suitable social media accounts of yours
 - [ ] In case of a minor release, prepare structure for next minor release cycle
   - [ ] Make a new branch for backporting commits with `git branch [major].[minor].x`
   - [ ] Make an empty commit on main (not on the newly created release branch) with `git commit --allow-empty -m "Start [major].[minor+1].0"`
