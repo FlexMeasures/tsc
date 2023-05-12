@@ -56,10 +56,10 @@ For a MINOR or MAJOR release:
 - [ ] Update dependencies: 
   - [ ] `make freeze-deps`
 - [ ] Commit & push
-  - local changes (e.g. from the change log updates), e.g.: `git commit -S -sam "changelog & deps updates for vX.Y"`
+  - local changes (e.g. from the change log updates), e.g.: `git commit -S -sam "changelog & deps updates for v<major>.<minor>"`
   - `git push`
   - (PATCH) `git checkout` the patch release branch, backport the change log updates, and `git push` again
-  - Add the version tag: `git tag -a vX.Y.Z`
+  - Add the version tag: `git tag -a v<major>.<minor>.<patch>`
   - `git push --tags` 
 - [ ] Create a release on GitHub based on the new tag  (you can copy the title from your blog post and also paste the change log notes in there; code assets are added automatically)
 - [ ] (MINOR or MAJOR) Publish the blog post in Publii ("Sync your website")
@@ -67,26 +67,26 @@ For a MINOR or MAJOR release:
 - [ ] Release to Pypi
   - Run `./to_pypi.sh`  # Credentials in Seita's keepass store
   - Test (in some fresh context) if pip installs the fresh version:
-    - `python3 -m venv testing-fm-vX.Y`
-    - `source testing-fm-vX.Y/bin/activate`
+    - `python3 -m venv testing-fm-latest`
+    - `source testing-fm-latest/bin/activate`
     - `pip install --upgrade flexmeasures`  # should download & install new version
-    - `deactivate && rm -rf testing-fm-vX.Y`
+    - `deactivate && rm -rf testing-fm-latest`
 - [ ] Mention the release (with link to the blog post) on:
   - [ ] the @flexmeasures Twitter account
   - [ ] the FlexMeasures mailing list
   - [ ] the #flexmeasures channel on LF Energy Slack
   - [ ] other suitable social media accounts of yours
 - [ ] (MINOR or MAJOR) Prepare structure for next release cycle
-  - [ ] Make a new patch release branch for backporting commits with `git branch [major].[minor].x` (MINOR) or `git branch [major].0.x` (MAJOR) 
-  - [ ] Make an empty commit on main (not on the newly created patch release branch) with `git commit --allow-empty -S -sm "Start [major].[minor+1].0"` (MINOR) or `git commit --allow-empty -S -sm "Start [major+1].0.0"` (MAJOR)
+  - [ ] Make a new patch release branch for backporting commits with `git branch <major>.<minor>.x` (MINOR) or `git branch <major>.0.x` (MAJOR) 
+  - [ ] Make an empty commit on main (not on the newly created patch release branch) with `git commit --allow-empty -S -sm "Start <major>.<minor+1>.0"` (MINOR) or `git commit --allow-empty -S -sm "Start <major+1>.0.0"` (MAJOR)
   - [ ] `git push`
-  - [ ] Tag the new commit with `v[major].[minor+1].0.dev0` (MINOR) or `v[major+1].0.0.dev0` (MAJOR)
+  - [ ] Tag the new commit with `v<major>.<minor+1>.0.dev0` (MINOR) or `v<major+1>.0.0.dev0` (MAJOR)
   - [ ] `git push --tags`
 - [ ] Create a new version of our Docker image:
   - `docker tag flexmeasures_server lfenergy/flexmeasures:v<major>.<minor>`
-  - `docker tag lfenergy/flexmeasures:v[major].[minor] lfenergy/flexmeasures:latest`
+  - `docker tag lfenergy/flexmeasures:v<major>.<minor> lfenergy/flexmeasures:latest`
   - `docker login -u flexmeasures`  # Credentials for the Docker account are in Seita's keepass store. When using Docker Desktop (maybe for all Docker demons), you need a GPG key to use the Linux pass-store (https://docs.docker.com/desktop/get-started/#sign-in-to-docker-desktop)
-  - `docker push lfenergy/flexmeasures:v[major].[minor]`
+  - `docker push lfenergy/flexmeasures:v<major>.<minor>`
   - `docker push lfenergy/flexmeasures:latest`
   - Check on https://hub.docker.com/r/lfenergy/flexmeasures/tags
 - [ ] Close the current milestone and make a new milestone on https://github.com/FlexMeasures/flexmeasures/milestones
