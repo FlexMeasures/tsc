@@ -5,7 +5,8 @@
 
 FlexMeasures is released with [semantic versioning](https://semver.org/).
 
-We strive for roughly a release per month.
+We strive for a MINOR release roughly once per month,
+and to release PATCH versions as soon as issues are fixed.
 
 ## Checklist
 
