@@ -3,7 +3,7 @@
 
 ## Release policy
 
-FlexMeasures is released with semantic versioning.
+FlexMeasures is released with [semantic versioning](https://semver.org/).
 
 We strive for roughly a release per month.
 
