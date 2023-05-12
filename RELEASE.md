@@ -56,7 +56,7 @@ For a MINOR or MAJOR release:
 - [ ] Update dependencies: 
   - [ ] `make freeze-deps`
 - [ ] Commit & push
-  - local changes (e.g. from the change log updates), e.g.: `git commit -sam "changelog & deps updates for vX.Y"`
+  - local changes (e.g. from the change log updates), e.g.: `git commit -S -sam "changelog & deps updates for vX.Y"`
   - `git push`
   - (PATCH) `git checkout` the patch release branch, backport the change log updates, and `git push` again
   - Add the version tag: `git tag -a vX.Y.Z`
@@ -78,7 +78,7 @@ For a MINOR or MAJOR release:
   - [ ] other suitable social media accounts of yours
 - [ ] (MINOR or MAJOR) Prepare structure for next release cycle
   - [ ] Make a new patch release branch for backporting commits with `git branch [major].[minor].x` (MINOR) or `git branch [major].0.x` (MAJOR) 
-  - [ ] Make an empty commit on main (not on the newly created patch release branch) with `git commit --allow-empty -m "Start [major].[minor+1].0"` (MINOR) or `git commit --allow-empty -m "Start [major+1].0.0"` (MAJOR)
+  - [ ] Make an empty commit on main (not on the newly created patch release branch) with `git commit --allow-empty -S -sm "Start [major].[minor+1].0"` (MINOR) or `git commit --allow-empty -S -sm "Start [major+1].0.0"` (MAJOR)
   - [ ] `git push`
   - [ ] Tag the new commit with `v[major].[minor+1].0.dev0` (MINOR) or `v[major+1].0.0.dev0` (MAJOR)
   - [ ] `git push --tags`
