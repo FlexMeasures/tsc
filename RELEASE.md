@@ -41,7 +41,7 @@ For a MINOR or MAJOR release:
     - `docker compose build`
     - `docker compose up`  # already makes a toy account in container
     - Run the last steps of the tutorial (see link above, we still need to add prices and schedule). You can run `scripts/run-tutorial-in-docker.sh` (in this repo).
-    - Test if a schedule was made (bonus: also check in FlexMeasures UI)
+    - Test if a schedule was made in the CLI
     - Bonus (MAJOR release): Also check with `--as-job`, as that touches different code. Use `docker exec -it flexmeasures-worker-1 bash` here, then create schedule like in the tutorial.
     - Do a quick UI test: log in toy-user, select battery asset, view schedule
     - Run an API test (TODO, maybe use a script to get the tutorial data or add something as well)
@@ -74,6 +74,7 @@ For a MINOR or MAJOR release:
     - `deactivate && rm -rf testing-fm-latest`
 - [ ] Mention the release (with link to the blog post) on:
   - [ ] the @flexmeasures Twitter account
+  - [ ] the @flexmeasures@fosstodon.org Mastodon account
   - [ ] the FlexMeasures mailing list
   - [ ] the #flexmeasures channel on LF Energy Slack
   - [ ] other suitable social media accounts of yours
@@ -84,7 +85,7 @@ For a MINOR or MAJOR release:
   - [ ] Tag the new commit with `v<major>.<minor+1>.0.dev0` (MINOR) or `v<major+1>.0.0.dev0` (MAJOR)
   - [ ] `git push --tags`
 - [ ] Create a new version of our Docker image:
-  - `docker tag flexmeasures_server lfenergy/flexmeasures:v<major>.<minor>`
+  - `docker tag flexmeasures-server lfenergy/flexmeasures:v<major>.<minor>`
   - `docker tag lfenergy/flexmeasures:v<major>.<minor> lfenergy/flexmeasures:latest`
   - `docker login -u flexmeasures`  # Credentials for the Docker account are in Seita's keepass store. When using Docker Desktop (maybe for all Docker demons), you need a GPG key to use the Linux pass-store (https://docs.docker.com/desktop/get-started/#sign-in-to-docker-desktop)
   - `docker push lfenergy/flexmeasures:v<major>.<minor>`
