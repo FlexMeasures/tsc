@@ -35,7 +35,7 @@ Decisions:
 
 ### Roadmap
 
-Desire to discuss VPP capabilities, evem if those features are far out.
+Desire to discuss VPP capabilities, even if those features are far out.
 
 Suggestions:
 
