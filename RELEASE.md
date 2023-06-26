@@ -49,6 +49,7 @@ For a MINOR or MAJOR release:
 
 ### Release steps
 
+- [ ] Be sure to work on main: `git checkout main` and `git pull`
 - [ ] Update change logs with a commit described with "Prepare changelogs for v<major>.<minor>.<patch> release"
   - [ ] Insert today's date into `documentation/changelog.rst`
   - [ ] (MINOR or MAJOR) Get the blog post's slug (by copying in Publii, see right side under "SEO") and link to the post from the changelog (copy note from earlier versions).	
@@ -60,7 +61,7 @@ For a MINOR or MAJOR release:
   - local changes (e.g. from the change log updates), e.g.: `git commit -S -sam "changelog & deps updates for v<major>.<minor>"`
   - `git push`
   - (PATCH) `git checkout` the patch release branch, backport the change log updates, and `git push` again
-  - Add the version tag: `git tag -a v<major>.<minor>.<patch>`
+  - Add the version tag: `git tag -s -a v<major>.<minor>.<patch> -m ""`
   - `git push --tags` 
 - [ ] Create a release on GitHub based on the new tag  (you can copy the title from your blog post and also paste the change log notes in there; code assets are added automatically)
 - [ ] (MINOR or MAJOR) Publish the blog post in Publii ("Sync your website")
@@ -85,10 +86,10 @@ For a MINOR or MAJOR release:
   - [ ] Tag the new commit with `v<major>.<minor+1>.0.dev0` (MINOR) or `v<major+1>.0.0.dev0` (MAJOR)
   - [ ] `git push --tags`
 - [ ] Create a new version of our Docker image:
-  - `docker tag flexmeasures-server lfenergy/flexmeasures:v<major>.<minor>`
+  - `docker tag flexmeasures-server lfenergy/flexmeasures:v<major>.<minor>.<patch>`
   - `docker tag lfenergy/flexmeasures:v<major>.<minor> lfenergy/flexmeasures:latest`
   - `docker login -u flexmeasures`  # Credentials for the Docker account are in Seita's keepass store. When using Docker Desktop (maybe for all Docker demons), you need a GPG key to use the Linux pass-store (https://docs.docker.com/desktop/get-started/#sign-in-to-docker-desktop)
-  - `docker push lfenergy/flexmeasures:v<major>.<minor>`
+  - `docker push lfenergy/flexmeasures:v<major>.<minor>.<patch>`
   - `docker push lfenergy/flexmeasures:latest`
   - Check on https://hub.docker.com/r/lfenergy/flexmeasures/tags
 - [ ] Close the current milestone and make a new milestone on https://github.com/FlexMeasures/flexmeasures/milestones
