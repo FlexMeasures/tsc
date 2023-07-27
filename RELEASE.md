@@ -93,9 +93,10 @@ For a MINOR or MAJOR release:
   - [ ] Tag the new commit with `v<major>.<minor+1>.0.dev0` (MINOR) or `v<major+1>.0.0.dev0` (MAJOR)
   - [ ] `git push --tags`
 - [ ] Create a new version of our Docker image:
-  - `docker tag flexmeasures-server lfenergy/flexmeasures:v<major>.<minor>.<patch>`
-  - `docker tag lfenergy/flexmeasures:v<major>.<minor> lfenergy/flexmeasures:latest`
-  - `docker login -u flexmeasures`  # Credentials for the Docker account are in Seita's keepass store. When using Docker Desktop (maybe for all Docker demons), you need a GPG key to use the Linux pass-store (https://docs.docker.com/desktop/get-started/#sign-in-to-docker-desktop)
+  - [ ] Check `docker images` (CREATED column) to make sure the `flexmeasures-server` image is the one you just built (under "Test steps") 
+  - [ ] `docker tag flexmeasures-server lfenergy/flexmeasures:v<major>.<minor>.<patch>`
+  - [ ] `docker tag lfenergy/flexmeasures:v<major>.<minor> lfenergy/flexmeasures:latest`
+  - [ ] `docker login -u flexmeasures`  # Credentials for the Docker account are in Seita's keepass store. When using Docker Desktop (maybe for all Docker demons), you need a GPG key to use the Linux pass-store (https://docs.docker.com/desktop/get-started/#sign-in-to-docker-desktop)
   - `docker push lfenergy/flexmeasures:v<major>.<minor>.<patch>`
   - `docker push lfenergy/flexmeasures:latest`
   - Check on https://hub.docker.com/r/lfenergy/flexmeasures/tags
