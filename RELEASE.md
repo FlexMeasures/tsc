@@ -13,7 +13,7 @@ and to release PATCH versions as soon as issues are fixed.
 This checklist guides you through preparing, testing and documenting a release.
 
 
-### Preparation and test steps
+### Preparation steps
 
 - [ ] Decide which commits to main you want to include in the release, and make sure the [corresponding milestone](https://github.com/FlexMeasures/flexmeasures/milestones) is up-to-date and 100% closed (move open issues to the next milestone, if needed)
 - [ ] Check if the changes which happened justify the next version number you had in mind. https://semver.org/ has a helpful guide to differentiate between MAJOR, MINOR, PATCH releases:
@@ -27,24 +27,31 @@ For a PATCH release:
   - [ ] Backport (locally) to our patch release branch all closed PRs that still have the "Still Needs Manual Backport" label: see https://github.com/FlexMeasures/flexmeasures/pulls?q=is%3Apr+label%3A%22Still+Needs+Manual+Backport%22+is%3Aclosed (one way of doing that is by commenting on the merged PR with "@MeeseeksDev backport to <major>.<minor>.x"
   - [ ] Prepend each commit message with "Backport PR #xxx: " before pushing
   - [ ] Don't forget to remove the label on the GitHub PRs after backporting
-- [ ] Continue below
+- Continue ito testing
 
 For a MINOR or MAJOR release:
 
 - [ ] Write a blog post about the added features in Publii. You can copy an earlier post, but pay attention to metadata on the right (Featured image, Tags, SEO).
 - [ ] Be sure to work on main: `git checkout main` and `git pull`
 - [ ] Test documentation creation: `make update-docs`
-- [ ] Run some functionality tests:
-  - [ ] Run automated tests via `make test`.
-  - [ ] Run a quick QA to see problems not covered by tests: We'll bring up  [our docker compose stack](https://flexmeasures.readthedocs.io/en/latest/dev/docker-compose.html#seeing-it-work-running-the-toy-tutorial) for this:
-    - `docker rmi flexmeasures_server flexmeasures_worker`
-    - `docker compose build`
-    - `docker compose up`  # already makes a toy account in container
-    - Run the last steps of the tutorial (see link above, we still need to add prices and schedule). You can run `scripts/run-tutorial-in-docker.sh` (in this repo).
-    - Test if a schedule was made in the CLI
-    - Bonus (MAJOR release): Also check with `--as-job`, as that touches different code. Use `docker exec -it flexmeasures-worker-1 bash` here, then create schedule like in the tutorial.
-    - Do a quick UI test: log in toy-user, select battery asset, view schedule
-    - Run an API test (TODO, maybe use a script to get the tutorial data or add something as well)
+
+
+### Test steps
+
+- [ ] Run automated tests via `make test`.
+- [ ] Create the docker compose stack (this tests building and also creates the Docker image for release):
+  - `docker rmi flexmeasures_server flexmeasures_worker`
+  - `docker compose build`
+
+For a MINOR or MAJOR release:
+
+- [ ] Run a quick QA to see problems not covered by tests: We'll bring up  [our docker compose stack](https://flexmeasures.readthedocs.io/en/latest/dev/docker-compose.html#seeing-it-work-running-the-toy-tutorial) for this:
+  - [ ] `docker compose up`  # already makes a toy account in container
+  - [ ] Run the last steps of the tutorial (see link above, we still need to add prices and schedule). You can run `scripts/run-tutorial-in-docker.sh` (in this repo).
+  - [ ] Test if a schedule was made in the CLI
+  - [ ] Bonus (MAJOR release): Also check with `--as-job`, as that touches different code. Use `docker exec -it flexmeasures-worker-1 bash` here, then create schedule like in the tutorial.
+  - [ ] Do a quick UI test: log in toy-user, select battery asset, view schedule
+  - Run an API test (TODO, maybe use a script to get the tutorial data or add something as well)
 
 
 ### Release steps
