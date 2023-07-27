@@ -27,7 +27,7 @@ For a PATCH release:
   - [ ] Backport (locally) to our patch release branch all closed PRs that still have the "Still Needs Manual Backport" label: see https://github.com/FlexMeasures/flexmeasures/pulls?q=is%3Apr+label%3A%22Still+Needs+Manual+Backport%22+is%3Aclosed (one way of doing that is by commenting on the merged PR with "@MeeseeksDev backport to <major>.<minor>.x"
   - [ ] Prepend each commit message with "Backport PR #xxx: " before pushing
   - [ ] Don't forget to remove the label on the GitHub PRs after backporting
-- Continue ito testing
+- Continue to testing
 
 For a MINOR or MAJOR release:
 
