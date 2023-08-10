@@ -40,14 +40,15 @@ For a MINOR or MAJOR release:
 
 - [ ] Run automated tests via `make test`.
 - [ ] Create the docker compose stack (this tests building and also creates the Docker image for release):
-  - `docker rmi flexmeasures_server flexmeasures_worker`
+  - `docker rmi flexmeasures-server flexmeasures-worker`  (might need a `docker compose down` if you've built earlier)
   - `docker compose build`
+- [ ] Check if the documentation builds on [readthedocs.org](https://readthedocs.org/projects/flexmeasures/builds/) (login via Github)
 
 For a MINOR or MAJOR release:
 
 - [ ] Run a quick QA to see problems not covered by tests: We'll bring up  [our docker compose stack](https://flexmeasures.readthedocs.io/en/latest/dev/docker-compose.html#seeing-it-work-running-the-toy-tutorial) for this:
   - [ ] `docker compose up`  # already makes a toy account in container
-  - [ ] Run the last steps of the tutorial (see link above, we still need to add prices and schedule). You can run `scripts/run-tutorial-in-docker.sh` (in this repo).
+  - [ ] Run the last steps of the tutorial (see link above, we still need to add prices and schedule). You can run `tsc/scripts/run-tutorial-in-docker.sh` (in this repo).
   - [ ] Test if a schedule was made in the CLI
   - [ ] Bonus (MAJOR release): Also check with `--as-job`, as that touches different code. Use `docker exec -it flexmeasures-worker-1 bash` here, then create schedule like in the tutorial.
   - [ ] Do a quick UI test: log in toy-user, select battery asset, view schedule
@@ -70,9 +71,8 @@ For a MINOR or MAJOR release:
   - (PATCH) `git checkout` the patch release branch, backport the change log updates, and `git push` again
   - Add the version tag: `git tag -s -a v<major>.<minor>.<patch> -m ""`
   - `git push --tags` 
-- [ ] Create a release on GitHub based on the new tag  (you can copy the title from your blog post and also paste the change log notes in there; code assets are added automatically)
+- [ ] Create a release on GitHub based on the new tag  (you can copy the title from your blog post and also paste the change log notes in there; the "Generate release notes" button is also cool; code assets are added automatically)
 - [ ] (MINOR or MAJOR) Publish the blog post in Publii ("Sync your website")
-- [ ] Check if the documentation builds on [readthedocs.org](https://readthedocs.org/projects/flexmeasures/builds/) (login via Github)
 - [ ] Release to Pypi
   - Run `./to_pypi.sh`  # Credentials in Seita's keepass store
   - Test (in some fresh context) if pip installs the fresh version:
@@ -88,14 +88,16 @@ For a MINOR or MAJOR release:
   - [ ] other suitable social media accounts of yours
 - [ ] (MINOR or MAJOR) Prepare structure for next release cycle
   - [ ] Make a new patch release branch for backporting commits with `git branch <major>.<minor>.x` (MINOR) or `git branch <major>.0.x` (MAJOR) 
+  - [ ] `git checkout <your-branch>`
   - [ ] Make an empty commit on main (not on the newly created patch release branch) with `git commit --allow-empty -S -sm "Start <major>.<minor+1>.0"` (MINOR) or `git commit --allow-empty -S -sm "Start <major+1>.0.0"` (MAJOR)
   - [ ] `git push`
   - [ ] Tag the new commit with `v<major>.<minor+1>.0.dev0` (MINOR) or `v<major+1>.0.0.dev0` (MAJOR)
   - [ ] `git push --tags`
+  - [ ] `git checkout main`
 - [ ] Create a new version of our Docker image:
   - [ ] Check `docker images` (CREATED column) to make sure the `flexmeasures-server` image is the one you just built (under "Test steps") 
   - [ ] `docker tag flexmeasures-server lfenergy/flexmeasures:v<major>.<minor>.<patch>`
-  - [ ] `docker tag lfenergy/flexmeasures:v<major>.<minor> lfenergy/flexmeasures:latest`
+  - [ ] `docker tag lfenergy/flexmeasures:v<major>.<minor>.<patch> lfenergy/flexmeasures:latest`
   - [ ] `docker login -u flexmeasures`  # Credentials for the Docker account are in Seita's keepass store. When using Docker Desktop (maybe for all Docker demons), you need a GPG key to use the Linux pass-store (https://docs.docker.com/desktop/get-started/#sign-in-to-docker-desktop)
   - `docker push lfenergy/flexmeasures:v<major>.<minor>.<patch>`
   - `docker push lfenergy/flexmeasures:latest`
