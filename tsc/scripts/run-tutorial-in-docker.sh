@@ -29,10 +29,10 @@ ${TOMORROW}T22:00:00,10
 ${TOMORROW}T23:00:00,7" > prices-tomorrow.csv
 
 docker cp prices-tomorrow.csv flexmeasures-server-1:/app
-docker exec -it flexmeasures-server-1 bash -c "flexmeasures add beliefs --sensor-id 3 --source toy-user prices-tomorrow.csv --timezone utc"
+docker exec -it flexmeasures-server-1 bash -c "flexmeasures add beliefs --sensor-id 1 --source toy-user prices-tomorrow.csv --timezone utc"
 
 echo "[TUTORIAL-RUNNER] creating schedule ..."
-docker exec -it flexmeasures-server-1 bash -c "flexmeasures add schedule for-storage --sensor-id 2 --consumption-price-sensor 3 \
+docker exec -it flexmeasures-server-1 bash -c "flexmeasures add schedule for-storage --sensor-id 2 --consumption-price-sensor 1 \
     --start ${TOMORROW}T07:00+01:00 --duration PT12H --soc-at-start 50% \
     --roundtrip-efficiency 90%"
 # we also want to use --as-job here (testing the queuing), but for some reason using exec with -c and a command, the container can't see the redis port
