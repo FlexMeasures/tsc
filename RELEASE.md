@@ -20,6 +20,7 @@ This checklist guides you through preparing, testing and documenting a release.
   1. MAJOR version when you make incompatible API changes,
   2. MINOR version when you add functionality in a backwards compatible manner, and
   3. PATCH version when you make backwards compatible bug fixes.
+- Work in your `flexmeasures` folder (the repo) and activate your virtual environment (e.g. for building the code to Pypi)
 
 For a PATCH release:
 
@@ -46,11 +47,11 @@ For a MINOR or MAJOR release:
 
 For a MINOR or MAJOR release:
 
-- [ ] Run a quick QA to see problems not covered by tests: We'll bring up  [our docker compose stack](https://flexmeasures.readthedocs.io/en/latest/dev/docker-compose.html#seeing-it-work-running-the-toy-tutorial) for this:
+- [ ] Run a quick QA to see problems not covered by tests: We'll bring up [our docker compose stack](https://flexmeasures.readthedocs.io/en/latest/dev/docker-compose.html#seeing-it-work-running-the-toy-tutorial) for this:
   - [ ] `docker compose up`  # already makes a toy account in container
-  - [ ] Run the last steps of the tutorial (see link above, we still need to add prices and schedule). You can run `tsc/scripts/run-tutorial-in-docker.sh` (in this repo).
-  - [ ] Test if a schedule was made in the CLI
-  - [ ] Bonus (MAJOR release): Also check with `--as-job`, as that touches different code. Use `docker exec -it flexmeasures-worker-1 bash` here, then create schedule like in the tutorial.
+  - [ ] Run the last steps of the tutorial (see link above, we still need to add prices and schedule). You can run `../tsc/tsc/scripts/run-tutorial-in-docker.sh` (in this repo).
+  - [ ] Validate that a schedule was made in the CLI (the above script should do so)
+  - [ ] (MAJOR release) Also check with `--as-job`, as that touches different code: `docker exec -it flexmeasures-worker-1 bash -c "flexmeasures add schedule for-storage --sensor-id 2 --consumption-price-sensor 1 --start ${TOMORROW}T07:00+01:00 --duration PT12H --soc-at-start 50% --roundtrip-efficiency 90% --as-job"` 
   - [ ] Do a quick UI test: log in toy-user, select battery asset, view schedule
   - Run an API test (TODO, maybe use a script to get the tutorial data or add something as well)
 
@@ -58,13 +59,13 @@ For a MINOR or MAJOR release:
 ### Release steps
 
 - [ ] Be sure to work on main: `git checkout main` and `git pull`
-- [ ] Update change logs with a commit described with "Prepare changelogs for v<major>.<minor>.<patch> release"
+- [ ] Update change logs
   - [ ] Insert today's date into `documentation/changelog.rst`
   - [ ] (MINOR or MAJOR) Get the blog post's slug (by copying in Publii, see right side under "SEO") and link to the post from the changelog (copy note from earlier versions).	
   - [ ] Look at `documentation/cli/change_log.rst` to see if we made changes there. Update the date.
   - [ ] Likewise, look at `documentation/api/change_log.rst`
-- [ ] Update dependencies: 
-  - [ ] `make freeze-deps`
+- [ ] Update dependencies (across Python versions): 
+  - [ ] `cd ci; ./update-packages.sh; cd ..`
 - [ ] Commit & push
   - local changes (e.g. from the change log updates), e.g.: `git commit -S -sam "changelog & deps updates for v<major>.<minor>"`
   - `git push`
@@ -74,7 +75,7 @@ For a MINOR or MAJOR release:
 - [ ] Create a release on GitHub based on the new tag  (you can copy the title from your blog post and also paste the change log notes in there; the "Generate release notes" button is also cool; code assets are added automatically)
 - [ ] (MINOR or MAJOR) Publish the blog post in Publii ("Sync your website")
 - [ ] Release to Pypi
-  - Run `./to_pypi.sh`  # Credentials in Seita's keepass store
+  - Run `./to_pypi.sh`  # Credentials in Seita's keepass store, use __token__ as username and the access token as password
   - Test (in some fresh context) if pip installs the fresh version:
     - `python3 -m venv testing-fm-latest`
     - `source testing-fm-latest/bin/activate`
@@ -108,4 +109,5 @@ For a MINOR or MAJOR release:
   - Add a placeholder for the next minor release
   - Commit the placeholder(s)
 - [ ] (MINOR or MAJOR) Upgrade dependencies now, so they are well-tested when the next version is released: `make upgrade-deps`. Probably good to release this change in a PR to discuss, of course especially if `make test` is not successful. Also, this is a good moment to try removing conflict-related version limits (app.in protects test.in, which protects dev.in) 
+  - [ ] `cd ci; ./update-packages.sh upgrade; cd ..`
   
