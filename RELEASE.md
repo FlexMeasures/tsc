@@ -64,7 +64,7 @@ For a MINOR or MAJOR release:
   - [ ] (MINOR or MAJOR) Get the blog post's slug (by copying in Publii, see right side under "SEO") and link to the post from the changelog (copy note from earlier versions).	
   - [ ] Look at `documentation/cli/change_log.rst` to see if we made changes there. Update the date.
   - [ ] Likewise, look at `documentation/api/change_log.rst`
-- [ ] Update dependencies (across Python versions): 
+- [ ] (MINOR or MAJOR) Update dependencies (across Python versions): 
   - [ ] `cd ci; ./update-packages.sh; cd ..`
 - [ ] Commit & push
   - local changes (e.g. from the change log updates), e.g.: `git commit -S -sam "changelog & deps updates for v<major>.<minor>"`
