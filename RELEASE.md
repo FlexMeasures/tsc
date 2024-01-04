@@ -51,7 +51,9 @@ For a MINOR or MAJOR release:
   - [ ] `docker compose up`  # already makes a toy account in container
   - [ ] Run the last steps of the tutorial (see link above, we still need to add prices and schedule). You can run `../tsc/tsc/scripts/run-tutorial-in-docker.sh` (in this repo).
   - [ ] Validate that a schedule was made in the CLI (the above script should do so)
-  - [ ] (MAJOR release) Also check with `--as-job`, as that touches different code: `docker exec -it flexmeasures-worker-1 bash -c "flexmeasures add schedule for-storage --sensor-id 2 --consumption-price-sensor 1 --start ${TOMORROW}T07:00+01:00 --duration PT12H --soc-at-start 50% --roundtrip-efficiency 90% --as-job"` 
+  - [ ] (MAJOR release) Also check with `--as-job`, as that touches different code:
+    - `TOMORROW=$(date --date="next day" '+%Y-%m-%d'); docker exec -it flexmeasures-worker-1 bash -c "flexmeasures add schedule for-storage --sensor-id 2 --consumption-price-sensor 1 --start ${TOMORROW}T07:00+01:00 --duration PT12H --soc-at-start 50% --roundtrip-efficiency 90% --as-job"`
+    - `docker logs flexmeasures-worker-1`  # this should tell you if schedule creation went well.
   - [ ] Do a quick UI test: log in toy-user, select battery asset, view schedule
   - Run an API test (TODO, maybe use a script to get the tutorial data or add something as well)
 
@@ -75,7 +77,7 @@ For a MINOR or MAJOR release:
 - [ ] Create a release on GitHub based on the new tag  (you can copy the title from your blog post and also paste the change log notes in there; the "Generate release notes" button is also cool; code assets are added automatically)
 - [ ] (MINOR or MAJOR) Publish the blog post in Publii ("Sync your website")
 - [ ] Release to Pypi
-  - Run `./to_pypi.sh`  # Credentials in Seita's keepass store, use __token__ as username and the access token as password
+  - Run `./to_pypi.sh`  # Credentials in Seita's keepass store, use `__token__` as username and the access token as password
   - Test (in some fresh context) if pip installs the fresh version:
     - `python3 -m venv testing-fm-latest`
     - `source testing-fm-latest/bin/activate`
