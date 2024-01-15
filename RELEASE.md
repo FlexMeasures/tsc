@@ -43,7 +43,6 @@ For a MINOR or MAJOR release:
 - [ ] Create the docker compose stack (this tests building and also creates the Docker image for release):
   - `docker rmi flexmeasures-server flexmeasures-worker`  (might need a `docker compose down` if you've built earlier)
   - `docker compose build`
-- [ ] Check if the documentation builds on [readthedocs.org](https://readthedocs.org/projects/flexmeasures/builds/) (login via Github)
 
 For a MINOR or MAJOR release:
 
@@ -73,7 +72,8 @@ For a MINOR or MAJOR release:
   - `git push`
   - (PATCH) `git checkout` the patch release branch, backport the change log updates, and `git push` again
   - Add the version tag: `git tag -s -a v<major>.<minor>.<patch> -m ""`
-  - `git push --tags` 
+  - `git push --tags`
+- [ ] Check if the documentation builds on [readthedocs.org](https://readthedocs.org/projects/flexmeasures/builds/) (login via Github)
 - [ ] Create a release on GitHub based on the new tag  (you can copy the title from your blog post and also paste the change log notes in there; the "Generate release notes" button is also cool; code assets are added automatically)
 - [ ] (MINOR or MAJOR) Publish the blog post in Publii ("Sync your website")
 - [ ] Release to Pypi
