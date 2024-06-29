@@ -75,13 +75,13 @@ For a MINOR or MAJOR release:
   - `git push --tags`
 - [ ] Check if the documentation builds on [readthedocs.org](https://readthedocs.org/projects/flexmeasures/builds/) (login via Github)
 - [ ] Create a release on GitHub based on the new tag (you can copy the title from your blog post and also paste the change log notes in there; the "Generate release notes" button is also cool; code assets are added automatically)
-- [ ] (MINOR or MAJOR) Publish the blog post in Publii ("Sync your website") - if you need a Github token, you can generate one [like this](https://github.com/settings/tokens/new?scopes=public_repo,repo_deployment&description=Token for Deployment to GitHub Pages). Other Server settings for [Publii under Github Pages](https://getpublii.com/docs/host-static-website-github-pages.html): "Website URL":"flexmeasures.io", "API Server": "api.github.com", "Username": "FlexMeasures", "Repository": "website".
+- [ ] (MINOR or MAJOR) Publish the blog post in Publii ("Sync your website") - if you need a Github token, you can generate one [like this](https://github.com/settings/tokens/new?scopes=public_repo,repo_deployment&description=Token%20for%20Deployment%20to%20GitHub%20Pages). Other Server settings for [Publii under Github Pages](https://getpublii.com/docs/host-static-website-github-pages.html): "Website URL":"flexmeasures.io", "API Server": "api.github.com", "Username": "FlexMeasures", "Repository": "website".
 - [ ] Release to Pypi
   - Run `./to_pypi.sh`  # Credentials in Seita's keepass store (in the "PyPi" card's description), use `__token__` as username and the access token as password
   - Test (in some fresh context) if pip installs the fresh version:
-    - `python3 -m venv testing-fm-latest`
-    - `source testing-fm-latest/bin/activate`
+    - `python3 -m venv testing-fm-latest; source testing-fm-latest/bin/activate`
     - `pip install --upgrade flexmeasures`  # should download & install new version
+    - `python -c "python -c "from flexmeasures import __version__; print(__version__)"` # should print your new version
     - `deactivate && rm -rf testing-fm-latest`
 - [ ] Release to Docker Hub:
   - [ ] Check `docker images` (CREATED column) to make sure the `flexmeasures-server` image is the one you just built (under "Test steps")
