@@ -3,7 +3,9 @@
 ## Attendees
 - FlexMeasures TSC
   - Nicolas Höning
+  - Felix Claessen
 - Others: 
+  - Ard Jonker 
  
 ## Notes
 - Presented Version 0.23 features:
