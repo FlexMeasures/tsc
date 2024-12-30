@@ -15,7 +15,7 @@
 - Server:
   - 0.24 is soon out, contains grpah editing and multi-commitment storage scheduling
   - Plans for 0.25: relaxed set points in storage scheduler, editing flex context
-  - Later: asset page remodeling, user/role management 
+  - Later: endpoint for scheduling on asset level (incl. several devices), asset page remodeling, user/role management 
   - Ard offers consultation of new UX features and user/role management
 - Client:
   - Error handling needs improvement
