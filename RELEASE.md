@@ -81,7 +81,7 @@ For a MINOR or MAJOR release:
   - Test (in some fresh context) if pip installs the fresh version:
     - `python3 -m venv testing-fm-latest; source testing-fm-latest/bin/activate`
     - `pip install --upgrade flexmeasures`  # should download & install new version
-    - `python -c "python -c "from flexmeasures import __version__; print(__version__)"` # should print your new version
+    - `python -c "from flexmeasures import __version__; print(__version__)"` # should print your new version
     - `deactivate && rm -rf testing-fm-latest`
 - [ ] Release to Docker Hub:
   - [ ] Check `docker images` (CREATED column) to make sure the `flexmeasures-server` image is the one you just built (under "Test steps")
