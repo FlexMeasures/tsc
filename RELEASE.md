@@ -21,6 +21,7 @@ This checklist guides you through preparing, testing and documenting a release.
   2. MINOR version when you add functionality in a backwards compatible manner, and
   3. PATCH version when you make backwards compatible bug fixes.
 - Work in your `flexmeasures` folder (the repo) and activate your virtual environment (e.g. for building the code to Pypi)
+- Be sure you only work on FlexMeasures core. The `FLEXMEASURES_PLUGINS` setting should not be set.
 
 For a PATCH release:
 
@@ -52,7 +53,7 @@ For a MINOR or MAJOR release:
   - [ ] Validate that a schedule was made in the CLI (the above script should do so)
   - [ ] (MAJOR release) Also check with `--as-job`, as that touches different code:
     - `TOMORROW=$(date --date="next day" '+%Y-%m-%d'); docker exec -it flexmeasures-worker-1 bash -c "flexmeasures add schedule for-storage --sensor 2 --consumption-price-sensor 1 --start ${TOMORROW}T07:00+01:00 --duration PT12H --soc-at-start 50% --roundtrip-efficiency 90% --as-job"`
-    - `docker logs flexmeasures-worker-1`  # this should tell you if schedule creation went well.
+    - `docker logs flexmeasures-worker-1`  # this should tell you if schedule creation went well, e.g. "Job 0b0bf442-799b-47e0-b6d7-6ac1b732bde9 made schedule"
   - [ ] Do a quick UI test: log in toy-user, select battery asset, view schedule
   - Run an API test (TODO, maybe use a script to get the tutorial data or add something as well)
 
@@ -74,7 +75,7 @@ For a MINOR or MAJOR release:
   - Add the version tag: `git tag -s -a v<major>.<minor>.<patch> -m ""`
   - `git push --tags`
 - [ ] Check if the documentation builds on [readthedocs.org](https://readthedocs.org/projects/flexmeasures/builds/) (login via Github)
-- [ ] Create a release on GitHub based on the new tag (you can copy the title from your blog post and also paste the change log notes in there; the "Generate release notes" button is also cool; code assets are added automatically)
+- [ ] Create [a release on GitHub](https://github.com/FlexMeasures/flexmeasures/releases) based on the new tag (you can copy the title from your blog post and also paste the change log notes in there; the "Generate release notes" button is also cool; code assets are added automatically)
 - [ ] (MINOR or MAJOR) Publish the blog post in Publii ("Sync your website") - if you need a Github token, you can generate one [like this](https://github.com/settings/tokens/new?scopes=public_repo,repo_deployment&description=Token%20for%20Deployment%20to%20GitHub%20Pages). Other Server settings for [Publii under Github Pages](https://getpublii.com/docs/host-static-website-github-pages.html): "Website URL":"flexmeasures.io", "API Server": "api.github.com", "Username": "FlexMeasures", "Repository": "website".
 - [ ] Release to Pypi
   - Run `./to_pypi.sh`  # Credentials in Seita's keepass store (in the "PyPi" card's description), use `__token__` as username and the access token as password
@@ -113,4 +114,8 @@ For a MINOR or MAJOR release:
   - Commit the placeholder(s)
 - [ ] (MINOR or MAJOR) Upgrade dependencies now, so they are well-tested when the next version is released: `make upgrade-deps`. Probably good to release this change in a PR to discuss, of course especially if `make test` is not successful. Also, this is a good moment to try removing conflict-related version limits (app.in protects test.in, which protects dev.in) 
   - [ ] `cd ci; ./update-packages.sh upgrade; cd ..`
-  
+  - [ ] `cp requirements/3.11/app.txt requirements.txt`  # we keep that around for Snyk (add note in the header) at the moment, maybe it can become a symbolic link one day?
+  - [ ] `git diff | vim -`  # manually inspect which version jumps are major
+  - [ ] `git checkout -b chore/upgrade-dependencies-for-v<major>.<minor+1>`  # this branch will be the basis for the PR
+  - [ ] `make install-for-dev`
+  - [ ] `pytest -x`  # if this goes well, we can rather quickly merge the PR, if it fails, we have work to do
