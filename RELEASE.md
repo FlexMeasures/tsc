@@ -104,7 +104,7 @@ For a MINOR or MAJOR release:
   - [ ] `git checkout <your-branch>`
   - [ ] Make an empty commit on main (not on the newly created patch release branch) with `git commit --allow-empty -S -sm "Start <major>.<minor+1>.0"` (MINOR) or `git commit --allow-empty -S -sm "Start <major+1>.0.0"` (MAJOR)
   - [ ] `git push`
-  - [ ] Tag the new commit with `v<major>.<minor+1>.0.dev0` (MINOR) or `v<major+1>.0.0.dev0` (MAJOR)
+  - [ ] Tag the new commit with `git tag v<major>.<minor+1>.0.dev0` (MINOR) or `git tag v<major+1>.0.0.dev0` (MAJOR)
   - [ ] `git push --tags`
   - [ ] `git checkout main`
 - [ ] Close the current milestone and make a new milestone on https://github.com/FlexMeasures/flexmeasures/milestones (you can move over not-closed issues manually)
