@@ -114,7 +114,6 @@ For a MINOR or MAJOR release:
   - Commit the placeholder(s)
 - [ ] (MINOR or MAJOR) Upgrade dependencies now, so they are well-tested when the next version is released: `make upgrade-deps`. Probably good to release this change in a PR to discuss, of course especially if `make test` is not successful. Also, this is a good moment to try removing conflict-related version limits (app.in protects test.in, which protects dev.in) 
   - [ ] `cd ci; ./update-packages.sh upgrade; cd ..`
-  - [ ] `cp requirements/3.11/app.txt requirements.txt`  # we keep that around for Snyk (add note in the header) at the moment, maybe it can become a symbolic link one day?
   - [ ] `git diff | vim -`  # manually inspect which version jumps are major
   - [ ] `git checkout -b chore/upgrade-dependencies-for-v<major>.<minor+1>`  # this branch will be the basis for the PR
   - [ ] `make install-for-dev`
