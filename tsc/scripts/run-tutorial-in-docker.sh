@@ -29,7 +29,7 @@ ${TOMORROW}T22:00:00,10
 ${TOMORROW}T23:00:00,7" > prices-tomorrow.csv
 
 docker cp prices-tomorrow.csv flexmeasures-server-1:/app
-docker exec -it flexmeasures-server-1 bash -c "flexmeasures add beliefs --sensor 1 --source toy-user prices-tomorrow.csv --timezone utc"
+docker exec -it flexmeasures-server-1 bash -c "flexmeasures add beliefs --sensor 1 --source toy-user prices-tomorrow.csv --timezone Europe/Amsterdam"
 
 echo "[TUTORIAL-RUNNER] creating schedule ..."
 docker exec -it flexmeasures-server-1 bash -c "flexmeasures add schedule for-storage --sensor 2 --consumption-price-sensor 1 \
