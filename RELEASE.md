@@ -109,7 +109,7 @@ For a MINOR or MAJOR release:
   - [ ] `git checkout main`
 - [ ] Close the current milestone and make a new milestone on https://github.com/FlexMeasures/flexmeasures/milestones (you can move over not-closed issues manually)
 - [ ] (MINOR or MAJOR) Update `documentation/changelog.rst` to avoid wasting time on change log merge conflicts later:
-  - Add a placeholder for the next patch release
+- [ ] (MINOR or MAJOR) Upgrade dependencies now, so they are well-tested when the next version is released. Probably good to release this change in a PR to discuss, of course especially if `make test` is not successful. Also, this is a good moment to try removing conflict-related version limits (app.in protects test.in, which protects dev.in) 
   - Add a placeholder for the next minor release
   - Commit the placeholder(s)
 - [ ] (MINOR or MAJOR) Upgrade dependencies now, so they are well-tested when the next version is released: `make upgrade-deps`. Probably good to release this change in a PR to discuss, of course especially if `make test` is not successful. Also, this is a good moment to try removing conflict-related version limits (app.in protects test.in, which protects dev.in) 
