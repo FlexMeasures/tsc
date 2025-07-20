@@ -43,7 +43,7 @@ For a MINOR or MAJOR release:
 - [ ] Run automated tests via `make test`.
 - [ ] Create the docker compose stack (this tests building and also creates the Docker image for release):
   - `docker rm flexmeasures-server-1 flexmeasures-worker-1; docker rmi flexmeasures-server flexmeasures-worker`  (might need a `docker compose down` if you've built earlier)
-  - `docker compose build`
+  - `docker compose build`  (Is the `docker-compose-data` dir posing a permission problem? Delete it first with `sudo rm -rf docker-compose-data`.)
 
 For a MINOR or MAJOR release:
 
@@ -52,10 +52,12 @@ For a MINOR or MAJOR release:
   - [ ] Run the last steps of the tutorial (see link above, we still need to add prices and schedule). You can run `../tsc/tsc/scripts/run-tutorial-in-docker.sh` (in this repo).
   - [ ] Validate that a schedule was made in the CLI (the above script should do so)
   - [ ] (MAJOR release) Also check with `--as-job`, as that touches different code:
-    - `TOMORROW=$(date --date="next day" '+%Y-%m-%d'); docker exec -it flexmeasures-worker-1 bash -c "flexmeasures add schedule for-storage --sensor 2 --consumption-price-sensor 1 --start ${TOMORROW}T07:00+01:00 --duration PT12H --soc-at-start 50% --roundtrip-efficiency 90% --as-job"`
+    - `TOMORROW=$(date --date="next day" '+%Y-%m-%d'); docker exec -it flexmeasures-worker-1 bash -c "flexmeasures add schedule for-storage --sensor 2 --consumption-price-sensor 1 --start ${TOMORROW}T07:00+01:00 --duration PT12H --soc-at-start 50% --roundtrip-efficiency 90% --as-job"`  # the output should tell you that a job was added to the queue
     - `docker logs flexmeasures-worker-1`  # this should tell you if schedule creation went well, e.g. "Job 0b0bf442-799b-47e0-b6d7-6ac1b732bde9 made schedule"
-  - [ ] Do a quick UI test: log in toy-user, select battery asset, view schedule
-  - Run an API test (TODO, maybe use a script to get the tutorial data or add something as well)
+  - [ ] Do a quick UI test: log in toy-user, select battery asset, view schedule.
+    - The cleanest approach is to do this in a new incognito/private browser window. Hit F12 and check in the dev console if there are errors in the Network & Console tabs.
+    - If the time range does not include tomorrow (which is where the schedule is made), you can click "Today and tomorrow" in the date picker.
+  - Run an API test (TODO, maybe use a script with flexmeasures-client, to add new structure, as well as some data)
 
 
 ### Release steps
@@ -102,7 +104,7 @@ For a MINOR or MAJOR release:
 - [ ] (MINOR or MAJOR) Prepare structure for next release cycle
   - [ ] Make a new patch release branch for backporting commits with `git branch <major>.<minor>.x` (MINOR) or `git branch <major>.0.x` (MAJOR) 
   - [ ] `git checkout <your-branch>`
-  - [ ] Make an empty commit on main (not on the newly created patch release branch) with `git commit --allow-empty -S -sm "Start <major>.<minor+1>.0"` (MINOR) or `git commit --allow-empty -S -sm "Start <major+1>.0.0"` (MAJOR)
+  - [ ] Make an empty commit on main (not on the newly created patch release branch) with `git commit --allow-empty -S -sm "Start v<major>.<minor+1>.0"` (MINOR) or `git commit --allow-empty -S -sm "Start v<major+1>.0.0"` (MAJOR)
   - [ ] `git push`
   - [ ] Tag the new commit with `git tag v<major>.<minor+1>.0.dev0` (MINOR) or `git tag v<major+1>.0.0.dev0` (MAJOR)
   - [ ] `git push --tags`
