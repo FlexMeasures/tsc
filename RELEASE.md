@@ -77,7 +77,7 @@ For a MINOR or MAJOR release:
   - Add the version tag: `git tag -s -a v<major>.<minor>.<patch> -m ""`
   - `git push --tags`
 - [ ] [GitHub Actions](https://github.com/FlexMeasures/flexmeasures/actions)
-  - [ ] Check your [GitHub notifications](https://github.com/notifications) for an approval request to release to PyPI
+  - [ ] Check your [GitHub notifications](https://github.com/notifications) for an approval request to release to PyPI (or ask one of the maintainers of the `pypi` environment of the FlexMeasures repository on GitHub)
   - [ ] Check whether the new release made it to [PyPI](https://pypi.org/p/flexmeasures)
   - [ ] Check if the documentation builds on [readthedocs.org](https://readthedocs.org/projects/flexmeasures/builds/) (login via Github)
 - [ ] Create [a release on GitHub](https://github.com/FlexMeasures/flexmeasures/releases) based on the new tag (you can copy the title from your blog post and also paste the change log notes in there; the "Generate release notes" button is also cool; code assets are added automatically)
