@@ -49,14 +49,16 @@ For a MINOR or MAJOR release:
 
 - [ ] Run a quick QA to see problems not covered by tests: We'll bring up [our docker compose stack](https://flexmeasures.readthedocs.io/en/latest/dev/docker-compose.html#seeing-it-work-running-the-toy-tutorial) for this:
   - [ ] `docker compose up`  # already makes a toy account in container
-  - [ ] Run the last steps of the tutorial (see link above, we still need to add prices and schedule). You can run `../tsc/tsc/scripts/run-tutorial-in-docker.sh` (in this repo).
-  - [ ] Validate that a schedule was made in the CLI (the above script should do so)
+  - [ ] Run the tutorials and check for errors, occasionally look at the graphs and compare to the ones in the docs:
+    - [ ] `./documentation/tut/scripts/run-tutorial-in-docker.sh`  (should create a schedule)
+    - [ ] `./documentation/tut/scripts/run-tutorial2-in-docker.sh`  (also a schedule)
+    - [ ] `./documentation/tut/scripts/run-tutorial3-in-docker.sh`  (process schedules, but are not shown)
+    - [ ] `./documentation/tut/scripts/run-tutorial4-in-docker.sh`  (multiple reports)
   - [ ] (MAJOR release) Also check with `--as-job`, as that touches different code:
-    - `TOMORROW=$(date --date="next day" '+%Y-%m-%d'); docker exec -it flexmeasures-worker-1 bash -c "flexmeasures add schedule for-storage --sensor 2 --consumption-price-sensor 1 --start ${TOMORROW}T07:00+01:00 --duration PT12H --soc-at-start 50% --roundtrip-efficiency 90% --as-job"`  # the output should tell you that a job was added to the queue
+    - `TOMORROW=$(date --date="next day" '+%Y-%m-%d'); docker exec -it flexmeasures-worker-1 bash -c "flexmeasures add schedule --sensor 2 --flex-context '{\"consumption-price\": {\"sensor\": 1}}' --start ${TOMORROW}T07:00+01:00 --duration PT12H --soc-at-start 50% --flex-model '{\"roundtrip-efficiency\": \"90%\"}' --as-job"`  # the output should tell you that a job was added to the queue
     - `docker logs flexmeasures-worker-1`  # this should tell you if schedule creation went well, e.g. "Job 0b0bf442-799b-47e0-b6d7-6ac1b732bde9 made schedule"
-  - [ ] Do a quick UI test: log in toy-user, select battery asset, view schedule.
+  - [ ] Do a quick UI test: log in toy-user, select battery asset, view Graphs page (select Today and Tomorrow in date picker ― you should see the schedule).
     - The cleanest approach is to do this in a new incognito/private browser window. Hit F12 and check in the dev console if there are errors in the Network & Console tabs.
-    - If the time range does not include tomorrow (which is where the schedule is made), you can click "Today and tomorrow" in the date picker.
   - Run an API test (TODO, maybe use a script with flexmeasures-client, to add new structure, as well as some data)
 
 
@@ -77,7 +79,7 @@ For a MINOR or MAJOR release:
   - Add the version tag: `git tag -s -a v<major>.<minor>.<patch> -m ""`
   - `git push --tags`
 - [ ] [GitHub Actions](https://github.com/FlexMeasures/flexmeasures/actions)
-  - [ ] Check your [GitHub notifications](https://github.com/notifications) for an approval request to release to PyPI (or ask one of the maintainers of the `pypi` environment of the FlexMeasures repository on GitHub)
+  - [ ] Check your [GitHub notifications](https://github.com/notifications) or emails for an approval request to release to PyPI (or ask one of the maintainers of the `pypi` environment of the FlexMeasures repository on GitHub). Approve the deployment.
   - [ ] Check whether the new release made it to [PyPI](https://pypi.org/p/flexmeasures)
   - [ ] Check if the documentation builds on [readthedocs.org](https://readthedocs.org/projects/flexmeasures/builds/) (login via Github)
 - [ ] Create [a release on GitHub](https://github.com/FlexMeasures/flexmeasures/releases) based on the new tag (you can copy the title from your blog post and also paste the change log notes in there; the "Generate release notes" button is also cool; code assets are added automatically)
@@ -98,7 +100,6 @@ For a MINOR or MAJOR release:
   - `docker push lfenergy/flexmeasures:latest`
   - Check on https://hub.docker.com/r/lfenergy/flexmeasures/tags
 - [ ] Mention the release (with link to the blog post) on:
-  - [ ] the @flexmeasures Twitter account
   - [ ] the @flexmeasures@fosstodon.org Mastodon account
   - [ ] the FlexMeasures mailing list
   - [ ] the #flexmeasures channel on LF Energy Slack
@@ -116,7 +117,7 @@ For a MINOR or MAJOR release:
   - Add a placeholder for the next patch release
   - Add a placeholder for the next minor release
   - Commit the placeholder(s)
-- [ ] (MINOR or MAJOR) Upgrade dependencies now, so they are well-tested when the next version is released: `make upgrade-deps`. Probably good to release this change in a PR to discuss, of course especially if `make test` is not successful. Also, this is a good moment to try removing conflict-related version limits (app.in protects test.in, which protects dev.in) 
+- [ ] (MINOR or MAJOR) Upgrade dependencies now, so they are well-tested when the next version is released: `make upgrade-deps`. Probably good to release this change in a PR to discuss, of course especially if `make test` is not successful. Tag the PR with `dependency-hygiene`, so we have a papertrail of us doing this regularly. Also, this is a good moment to try removing conflict-related version limits (app.in protects test.in, which protects dev.in) 
   - [ ] `cd ci; ./update-packages.sh upgrade; cd ..`
   - [ ] `git diff | vim -`  # manually inspect which version jumps are major
   - [ ] `git checkout -b chore/upgrade-dependencies-for-v<major>.<minor+1>`  # this branch will be the basis for the PR
