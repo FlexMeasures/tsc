@@ -52,10 +52,11 @@ For a MINOR or MAJOR release:
   - [ ] Run the tutorials and check for errors, occasionally look at the graphs and compare to the ones in the docs:
     - [ ] `./documentation/tut/scripts/run-tutorial-in-docker.sh`  (should create a schedule)
     - [ ] `./documentation/tut/scripts/run-tutorial2-in-docker.sh`  (also a schedule)
-    - [ ] `./documentation/tut/scripts/run-tutorial3-in-docker.sh`  (process schedules, but are not shown)
-    - [ ] `./documentation/tut/scripts/run-tutorial4-in-docker.sh`  (multiple reports)
+    - [ ] `./documentation/tut/scripts/run-tutorial3-in-docker.sh`  (two schedules, the 2nd PV & battery)
+    - [ ] `./documentation/tut/scripts/run-tutorial4-in-docker.sh`  (process schedules, but are not shown)
+    - [ ] `./documentation/tut/scripts/run-tutorial5-in-docker.sh`  (multiple reports)
   - [ ] (MAJOR release) Also check with `--as-job`, as that touches different code:
-    - `TOMORROW=$(date --date="next day" '+%Y-%m-%d'); docker exec -it flexmeasures-worker-1 bash -c "flexmeasures add schedule --sensor 2 --flex-context '{\"consumption-price\": {\"sensor\": 1}}' --start ${TOMORROW}T07:00+01:00 --duration PT12H --soc-at-start 50% --flex-model '{\"roundtrip-efficiency\": \"90%\"}' --as-job"`  # the output should tell you that a job was added to the queue
+    - `TOMORROW=$(date --date="next day" '+%Y-%m-%d'); docker exec -it flexmeasures-worker-1 bash -c "flexmeasures add schedule --sensor 2 --flex-context '{\"consumption-price\": {\"sensor\": 1}}' --start ${TOMORROW}T07:00+01:00 --duration PT12H --soc-at-start 50% --flex-model '{\"soc-min\": \"225 kWh\"}' --as-job"`  # the output should tell you that a job was added to the queue
     - `docker logs flexmeasures-worker-1`  # this should tell you if schedule creation went well, e.g. "Job 0b0bf442-799b-47e0-b6d7-6ac1b732bde9 made schedule"
   - [ ] Do a quick UI test: log in toy-user, select battery asset, view Graphs page (select Today and Tomorrow in date picker ― you should see the schedule).
     - The cleanest approach is to do this in a new incognito/private browser window. Hit F12 and check in the dev console if there are errors in the Network & Console tabs.
