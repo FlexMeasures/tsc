@@ -111,7 +111,6 @@ For a MINOR or MAJOR release:
   - [ ] `git push`
   - [ ] Tag the new commit with `git tag v<major>.<minor+1>.0.dev0` (MINOR) or `git tag v<major+1>.0.0.dev0` (MAJOR)
   - [ ] `git push --tags`
-  - [ ] `git checkout main`
 - [ ] Close the current milestone and make a new milestone on https://github.com/FlexMeasures/flexmeasures/milestones (you can move over not-closed issues manually)
 - [ ] (MINOR or MAJOR) Update `documentation/changelog.rst` to avoid wasting time on change log merge conflicts later:
   - Add a placeholder for the next patch release
