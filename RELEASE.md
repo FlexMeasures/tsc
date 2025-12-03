@@ -25,8 +25,9 @@ This checklist guides you through preparing, testing and documenting a release.
 
 For a PATCH release:
 
+- [ ] Make a new patch release branch for backporting commits with `git branch <major>.<minor>.x` (or check it out if it already exists).
 - [ ] Update the patch release branch:
-  - [ ] Backport (locally) to our patch release branch all closed PRs that still have the "Still Needs Manual Backport" label: see https://github.com/FlexMeasures/flexmeasures/pulls?q=is%3Apr+label%3A%22Still+Needs+Manual+Backport%22+is%3Aclosed (one way of doing that is by commenting on the merged PR with "@MeeseeksDev backport to <major>.<minor>.x"
+  - [ ] Backport (locally) to our patch release branch all closed PRs that still have the "Still Needs Manual Backport" label: see https://github.com/FlexMeasures/flexmeasures/pulls?q=is%3Apr+label%3A%22Still+Needs+Manual+Backport%22+is%3Aclosed
   - [ ] Prepend each commit message with "Backport PR #xxx: " before pushing
   - [ ] Don't forget to remove the label on the GitHub PRs after backporting
 - Continue to testing
@@ -106,9 +107,7 @@ For a MINOR or MAJOR release:
   - [ ] the #flexmeasures channel on LF Energy Slack
   - [ ] other suitable social media accounts of yours
 - [ ] (MINOR or MAJOR) Prepare structure for next release cycle
-  - [ ] Make a new patch release branch for backporting commits with `git branch <major>.<minor>.x` (MINOR) or `git branch <major>.0.x` (MAJOR) 
-  - [ ] `git checkout <your-branch>`
-  - [ ] Make an empty commit on main (not on the newly created patch release branch) with `git commit --allow-empty -S -sm "Start v<major>.<minor+1>.0"` (MINOR) or `git commit --allow-empty -S -sm "Start v<major+1>.0.0"` (MAJOR)
+  - [ ] Make an empty commit on main with `git commit --allow-empty -S -sm "Start v<major>.<minor+1>.0"` (MINOR) or `git commit --allow-empty -S -sm "Start v<major+1>.0.0"` (MAJOR)
   - [ ] `git push`
   - [ ] Tag the new commit with `git tag v<major>.<minor+1>.0.dev0` (MINOR) or `git tag v<major+1>.0.0.dev0` (MAJOR)
   - [ ] `git push --tags`
