@@ -118,9 +118,11 @@ For a MINOR or MAJOR release:
   - Add a placeholder for the next patch release
   - Add a placeholder for the next minor release
   - Commit the placeholder(s)
-- [ ] (MINOR or MAJOR) Upgrade dependencies now, so they are well-tested when the next version is released: `make upgrade-deps`. Probably good to release this change in a PR to discuss, of course especially if `make test` is not successful. Tag the PR with `dependency-hygiene`, so we have a papertrail of us doing this regularly. Also, this is a good moment to try removing conflict-related version limits (app.in protects test.in, which protects dev.in) 
-  - [ ] `cd ci; ./update-packages.sh upgrade; cd ..`
-  - [ ] `git diff | vim -`  # manually inspect which version jumps are major
+- [ ] (MINOR or MAJOR) Upgrade dependencies now, so they are well-tested when the next version is released. This should be done in a PR to discuss. This way, we spend the most time with newer versions before the next release (so issues are likely to bubble up). Certainly if `make test` is not successful, we have more work right away.  Also, this is a good moment to try removing conflict-related version limits (app.in protects test.in, which protects dev.in) 
   - [ ] `git checkout -b chore/upgrade-dependencies-for-v<major>.<minor+1>`  # this branch will be the basis for the PR
+  - [ ] `cd ci; ./update-packages.sh upgrade; cd ..`
+  - [ ] `git diff | vim -`  # manually inspect which version jumps are major, mention in PR
   - [ ] `make install-for-dev`
   - [ ] `pytest -x`  # if this goes well, we can rather quickly merge the PR, if it fails, we have work to do
+  - [ ] Create PR. Mention larger version jumps, removed version limits and observed test failures. Tag the PR with `dependency-hygiene`, so we have a papertrail of us doing this regularly.
+
