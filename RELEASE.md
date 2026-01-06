@@ -15,7 +15,7 @@ This checklist guides you through preparing, testing and documenting a release.
 
 ### Preparation steps
 
-- [ ] Decide which commits to main you want to include in the release, and make sure the [corresponding milestone](https://github.com/FlexMeasures/flexmeasures/milestones) is up-to-date and 100% closed (move open issues to the next milestone, if needed)
+- [ ] Decide which commits to main you want to include in the release, and make sure the [corresponding milestone](https://github.com/FlexMeasures/flexmeasures/milestones) is up-to-date and 100% complete (move open issues to the next milestone, if needed)
 - [ ] Check if the changes which happened justify the next version number you had in mind. https://semver.org/ has a helpful guide to differentiate between MAJOR, MINOR, PATCH releases:
   1. MAJOR version when you make incompatible API changes,
   2. MINOR version when you add functionality in a backwards compatible manner, and
