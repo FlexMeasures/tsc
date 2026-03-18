@@ -94,9 +94,11 @@ For a MINOR or MAJOR release:
     - `deactivate && rm -rf testing-fm-latest`
 - [ ] Release to Docker Hub:
   - [ ] Check `docker images` (CREATED column) to make sure the `flexmeasures-server` image is the one you just built (under "Test steps")
+  - [ ] Work with a fresh clone of the repo under a separate `flexmeasures-release` folder to avoid any run artifacts from being included in the image: `git clone git@github.com:FlexMeasures/flexmeasures.git flexmeasures-release`
+  - [ ] In the `flexmeasures-release` folder, checkout the right tag: `git checkout v<major>.<minor>.<patch>`
   - [ ] Re-build, because we want the new git version tag to be part of it: `docker compose build`
-  - [ ] `docker tag flexmeasures-server lfenergy/flexmeasures:v<major>.<minor>.<patch>`
-  - [ ] `docker tag lfenergy/flexmeasures:v<major>.<minor>.<patch> lfenergy/flexmeasures:latest`
+  - [ ] `docker tag flexmeasures-release-server lfenergy/flexmeasures:v<major>.<minor>.<patch>`
+  - [ ] `docker tag flexmeasures-release-server lfenergy/flexmeasures:latest`
   - [ ] `docker login -u flexmeasures`  # Credentials for the Docker account are in Seita's keepass store. When using Docker Desktop (maybe for all Docker demons), you need a GPG key to use the Linux pass-store (https://docs.docker.com/desktop/get-started/#sign-in-to-docker-desktop)
   - `docker push lfenergy/flexmeasures:v<major>.<minor>.<patch>`
   - `docker push lfenergy/flexmeasures:latest`
