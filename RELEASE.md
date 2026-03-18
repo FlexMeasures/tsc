@@ -95,7 +95,7 @@ For a MINOR or MAJOR release:
 - [ ] Release to Docker Hub:
   - [ ] Check `docker images` (CREATED column) to make sure the `flexmeasures-server` image is the one you just built (under "Test steps")
   - [ ] Work with a fresh clone of the repo under a separate `flexmeasures-release` folder to avoid any run artifacts from being included in the image: `git clone git@github.com:FlexMeasures/flexmeasures.git flexmeasures-release`
-  - [ ] Checkout the right tag: `git checkout v<major>.<minor>.<patch>`
+  - [ ] In the `flexmeasures-release` folder, checkout the right tag: `git checkout v<major>.<minor>.<patch>`
   - [ ] Re-build, because we want the new git version tag to be part of it: `docker compose build`
   - [ ] `docker tag flexmeasures-release-server lfenergy/flexmeasures:v<major>.<minor>.<patch>`
   - [ ] `docker tag flexmeasures-release-server lfenergy/flexmeasures:latest`
