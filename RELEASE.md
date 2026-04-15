@@ -20,8 +20,12 @@ This checklist guides you through preparing, testing and documenting a release.
   1. MAJOR version when you make incompatible API changes,
   2. MINOR version when you add functionality in a backwards compatible manner, and
   3. PATCH version when you make backwards compatible bug fixes.
-- Work in your `flexmeasures` folder (the repo) and activate your virtual environment (e.g. for building the code to Pypi)
+- Work on a fresh copy of the repo:
+  - [ ] `git clone git@github.com:FlexMeasures/flexmeasures.git flexmeasures-release`
+  - [ ] `cd flexmeasures`
+  - [ ] `uv sync --group dev --group test`
 - Be sure you only work on FlexMeasures core. The `FLEXMEASURES_PLUGINS` setting should not be set.
+
 
 For a PATCH release:
 
@@ -36,12 +40,12 @@ For a MINOR or MAJOR release:
 
 - [ ] Write a blog post about the added features in Publii. You can copy an earlier post, but pay attention to metadata on the right (Featured image, Tags, SEO).
 - [ ] Be sure to work on main: `git checkout main` and `git pull`
-- [ ] Test documentation creation: `make update-docs`
+- [ ] Test documentation creation: `uv run poe update-docs`
 
 
 ### Test steps
 
-- [ ] Run automated tests via `make test`.
+- [ ] Run automated tests via `uv run poe test`.
 - [ ] Create the docker compose stack (this tests building and also creates the Docker image for release):
   - `docker rm flexmeasures-server-1 flexmeasures-worker-1; docker rmi flexmeasures-server flexmeasures-worker`  (might need a `docker compose down` if you've built earlier)
   - `docker compose build`  (Is the `docker-compose-data` dir posing a permission problem? Delete it first with `sudo rm -rf docker-compose-data`.)
@@ -56,13 +60,18 @@ For a MINOR or MAJOR release:
     - [ ] `./documentation/tut/scripts/run-tutorial3-in-docker.sh`  (two schedules, the 2nd PV & battery)
     - [ ] `./documentation/tut/scripts/run-tutorial4-in-docker.sh`  (process schedules, but are not shown)
     - [ ] `./documentation/tut/scripts/run-tutorial5-in-docker.sh`  (multiple reports)
+    - Note 1: If midnight goes by between `docker compose up` and a live test like the tutorials, the data might be not what tests expect anymore. 
+    - Note 2: If you repeat the tutorials, you may need to re-create the toy account. For that, you might need to `rm /usr/var/flexmeasures-instance/.toy-account-created` in the server container.
   - [ ] (MAJOR release) Also check with `--as-job`, as that touches different code:
     - `TOMORROW=$(date --date="next day" '+%Y-%m-%d'); docker exec -it flexmeasures-worker-1 bash -c "flexmeasures add schedule --sensor 2 --flex-context '{\"consumption-price\": {\"sensor\": 1}}' --start ${TOMORROW}T07:00+01:00 --duration PT12H --soc-at-start 50% --flex-model '{\"soc-min\": \"225 kWh\"}' --as-job"`  # the output should tell you that a job was added to the queue
     - `docker logs flexmeasures-worker-1`  # this should tell you if schedule creation went well, e.g. "Job 0b0bf442-799b-47e0-b6d7-6ac1b732bde9 made schedule"
   - [ ] Do a quick UI test: log in toy-user, select battery asset, view Graphs page (select Today and Tomorrow in date picker ― you should see the schedule).
     - The cleanest approach is to do this in a new incognito/private browser window. Hit F12 and check in the dev console if there are errors in the Network & Console tabs.
-  - Run an API test (TODO, maybe use a script with flexmeasures-client, to add new structure, as well as some data)
-
+  - Run the HEMS script via the client (testing much of the FlexMeasures API as well):
+    - [ ] Go to your flexmeasures-client repo (or clone one) and edit the HEMS config at `examples/HEMS/const.py`. Set username and password to the toy user credentials ("toy-user@flexmeasures.io", "toy-password")
+    - [ ] Start the script with `uv run python HEMS_setup.py`
+    - [ ] Check the output
+    - [ ] Browse the results at `http://localhost:5000/TODO`. There should be schedules around 15 Jan 2030, as well as daily KPIs. Note: last time, this worked with a local FM server. but reporters crashed with FM running in docker compose. Needs another round of testing.
 
 ### Release steps
 
@@ -72,10 +81,8 @@ For a MINOR or MAJOR release:
   - [ ] (MINOR or MAJOR) Get the blog post's slug (by copying in Publii, see right side under "SEO") and link to the post from the changelog (copy note from earlier versions).	
   - [ ] Look at `documentation/cli/change_log.rst` to see if we made changes there. Update the date.
   - [ ] Likewise, look at `documentation/api/change_log.rst`
-- [ ] (MINOR or MAJOR) Update dependencies (across Python versions): 
-  - [ ] `cd ci; ./update-packages.sh; cd ..`
 - [ ] Commit & push
-  - local changes (e.g. from the change log updates), e.g.: `git commit -S -sam "changelog & deps updates for v<major>.<minor>"`
+  - local changes: `git commit -S -sam "changelog updates for v<major>.<minor>"`
   - `git push`
   - (PATCH) `git checkout` the patch release branch, backport the change log updates, and `git push` again
   - Add the version tag: `git tag -s -a v<major>.<minor>.<patch> -m ""`
@@ -93,12 +100,10 @@ For a MINOR or MAJOR release:
     - `python -c "from flexmeasures import __version__; print(__version__)"` # should print your new version
     - `deactivate && rm -rf testing-fm-latest`
 - [ ] Release to Docker Hub:
-  - [ ] Check `docker images` (CREATED column) to make sure the `flexmeasures-server` image is the one you just built (under "Test steps")
-  - [ ] Work with a fresh clone of the repo under a separate `flexmeasures-release` folder to avoid any run artifacts from being included in the image: `git clone git@github.com:FlexMeasures/flexmeasures.git flexmeasures-release`
   - [ ] In the `flexmeasures-release` folder, checkout the right tag: `git checkout v<major>.<minor>.<patch>`
   - [ ] Re-build, because we want the new git version tag to be part of it: `docker compose build`
-  - [ ] `docker tag flexmeasures-release-server lfenergy/flexmeasures:v<major>.<minor>.<patch>`
-  - [ ] `docker tag flexmeasures-release-server lfenergy/flexmeasures:latest`
+  - [ ] `docker tag flexmeasures-server:latest lfenergy/flexmeasures:v<major>.<minor>.<patch>`
+  - [ ] `docker tag flexmeasures-server:latest lfenergy/flexmeasures:latest`
   - [ ] `docker login -u flexmeasures`  # Credentials for the Docker account are in Seita's keepass store. When using Docker Desktop (maybe for all Docker demons), you need a GPG key to use the Linux pass-store (https://docs.docker.com/desktop/get-started/#sign-in-to-docker-desktop)
   - `docker push lfenergy/flexmeasures:v<major>.<minor>.<patch>`
   - `docker push lfenergy/flexmeasures:latest`
@@ -118,11 +123,11 @@ For a MINOR or MAJOR release:
   - Add a placeholder for the next patch release
   - Add a placeholder for the next minor release
   - Commit the placeholder(s)
-- [ ] (MINOR or MAJOR) Upgrade dependencies now, so they are well-tested when the next version is released. This should be done in a PR to discuss. This way, we spend the most time with newer versions before the next release (so issues are likely to bubble up). Certainly if `make test` is not successful, we have more work right away.  Also, this is a good moment to try removing conflict-related version limits (app.in protects test.in, which protects dev.in) 
+- [ ] (MINOR or MAJOR) Upgrade dependencies now, so they are well-tested when the next version is released. This should be done in a PR to discuss. This way, we spend the most time with newer versions before the next release (so issues are likely to bubble up). Certainly if `uv run poe test` is not successful, we have more work right away.  Also, this is a good moment to try removing conflict-related version limits (see pyproject.toml) 
   - [ ] `git checkout -b chore/upgrade-dependencies-for-v<major>.<minor+1>`  # this branch will be the basis for the PR
-  - [ ] `cd ci; ./update-packages.sh upgrade; cd ..`
-  - [ ] `git diff | vim -`  # manually inspect which version jumps are major, mention in PR
-  - [ ] `make install-for-dev`
-  - [ ] `pytest -x`  # if this goes well, we can rather quickly merge the PR, if it fails, we have work to do
+  - [ ] `uv lock --upgrade`
+  - [ ] `uv sync`
+  - [ ] `git diff | vim -`  # manually inspect which version jumps are major (with uv.lock, there needs to be a good way to do this ... right now it's difficult), mention in PR
+  - [ ] `uv run poe test` or `uv run pytest -x`  # if this goes well, we can rather quickly merge the PR, if it fails, we have work to do
   - [ ] Create PR. Mention larger version jumps, removed version limits and observed test failures. Tag the PR with `dependency-hygiene`, so we have a papertrail of us doing this regularly.
 
