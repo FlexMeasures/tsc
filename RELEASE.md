@@ -87,11 +87,11 @@ For a MINOR or MAJOR release:
   - (PATCH) `git checkout` the patch release branch, backport the change log updates, and `git push` again
   - Add the version tag: `git tag -s -a v<major>.<minor>.<patch> -m ""`
   - `git push --tags`
+- [ ] Create [a release on GitHub](https://github.com/FlexMeasures/flexmeasures/releases) based on the new tag (you can copy the title from your blog post and also paste the change log notes in there; the "Generate release notes" button is also cool; code assets are added automatically)
 - [ ] [GitHub Actions](https://github.com/FlexMeasures/flexmeasures/actions)
   - [ ] Check your [GitHub notifications](https://github.com/notifications) or emails for an approval request to release to PyPI (or ask one of the maintainers of the `pypi` environment of the FlexMeasures repository on GitHub). Approve the deployment.
   - [ ] Check whether the new release made it to [PyPI](https://pypi.org/p/flexmeasures)
   - [ ] Check if the documentation builds on [readthedocs.org](https://readthedocs.org/projects/flexmeasures/builds/) (login via Github)
-- [ ] Create [a release on GitHub](https://github.com/FlexMeasures/flexmeasures/releases) based on the new tag (you can copy the title from your blog post and also paste the change log notes in there; the "Generate release notes" button is also cool; code assets are added automatically)
 - [ ] (MINOR or MAJOR) Publish the blog post in Publii ("Sync your website") - if you need a Github token, you can generate one [like this](https://github.com/settings/tokens/new?scopes=public_repo,repo_deployment&description=Token%20for%20Deployment%20to%20GitHub%20Pages). Other Server settings for [Publii under Github Pages](https://getpublii.com/docs/host-static-website-github-pages.html): "Website URL":"flexmeasures.io", "API Server": "api.github.com", "Username": "FlexMeasures", "Repository": "website".
 - [ ] Test PyPI release
   - Test (in some fresh context) if pip installs the fresh version:
